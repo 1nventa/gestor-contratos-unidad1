@@ -10,6 +10,7 @@ Aplicación Android para el **Corte 1** de Desarrollo de Apps: persistencia en e
 - **Persistencia:** TinyDB (en el dispositivo)
 - **Nombre del alumno:** Carlos Hernandez
 - **Email institucional:** chernandezl1@unicartagena.edu.co
+- **Repositorio:** https://github.com/1nventa/gestor-contratos-unidad1
 
 ## Tablas
 
@@ -23,16 +24,16 @@ Aplicación Android para el **Corte 1** de Desarrollo de Apps: persistencia en e
 
 ## Estado actual
 
-**Parte 1:** interfaz de la pantalla principal (formulario de contratos). Todavía no hay validaciones, TinyDB ni login.
+**Parte 2:** validación del formulario y botón Cancelar. El contrato todavía no se guarda.
 
 El plan completo está en `docs/plan-de-partes.md`.
 
 ## Cómo abrir el proyecto en Kodular
 
 1. Entrar a [https://creator.kodular.io](https://creator.kodular.io) con la cuenta del curso.
-2. **Import project** y seleccionar `aia/GestorContratos-parte01.aia`.
+2. **Import project** y seleccionar el `.aia` más reciente en `aia/` (ahora `GestorContratos-parte02.aia`).
 3. Probar con **Kodular Companion**.
-4. Si se prefiere armarlo a mano, seguir `docs/parte-01-interfaz-contratos.md`.
+4. Si se prefiere armarlo a mano, seguir `docs/parte-01-interfaz-contratos.md` y `docs/parte-02-validaciones.md`.
 
 ## Requisitos del Corte 1 (se irán cubriendo por partes)
 

@@ -258,6 +258,19 @@ $JSON
         "ScalePictureToFit": "True",
         "Width": "-1090",
         "Uuid": "1025"
+      },
+      {
+        "$Name": "Notificador",
+        "$Type": "Notifier",
+        "$Version": "11",
+        "Uuid": "1026"
+      },
+      {
+        "$Name": "Reloj1",
+        "$Type": "Clock",
+        "$Version": "4",
+        "TimerEnabled": "False",
+        "Uuid": "1027"
       }
     ]
   }

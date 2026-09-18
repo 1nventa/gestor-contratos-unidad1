@@ -12,7 +12,7 @@ Este archivo documenta el avance del ejercicio **16. Contratos** para el Corte 1
 | Parte | Contenido | Estado |
 | --- | --- | --- |
 | 1 | Proyecto, README y pantalla principal (solo interfaz del formulario de contratos) | Completada |
-| 2 | Validación de datos y botón Cancelar (limpiar formulario) | Pendiente |
+| 2 | Validación de datos y botón Cancelar (limpiar formulario) | Completada |
 | 3 | Indicador visual del estado del contrato (vigente, por vencer, vencido) | Pendiente |
 | 4 | Registro de usuario con TinyDB | Pendiente |
 | 5 | Inicio de sesión y sesión activa | Pendiente |
