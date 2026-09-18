@@ -1,15 +1,606 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="component_event" id="evVolver" x="20" y="20">
-    <mutation component_type="Button" is_generic="false" instance_name="BotonVolver" event_name="Click"></mutation>
-    <field name="COMPONENT_SELECTOR">BotonVolver</field>
+  <block type="global_declaration" id="gC" x="20" y="20">
+    <field name="NAME">listaContratos</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="e1"><mutation items="0"></mutation></block>
+    </value>
+  </block>
+  <block type="global_declaration" id="gM" x="20" y="80">
+    <field name="NAME">listaMostrada</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="e2"><mutation items="0"></mutation></block>
+    </value>
+  </block>
+  <block type="global_declaration" id="gId" x="20" y="140">
+    <field name="NAME">idSeleccionado</field>
+    <value name="VALUE">
+      <block type="math_number" id="n0"><field name="NUM">0</field></block>
+    </value>
+  </block>
+  <block type="global_declaration" id="gMax" x="20" y="200">
+    <field name="NAME">maxId</field>
+    <value name="VALUE">
+      <block type="math_number" id="n1"><field name="NUM">0</field></block>
+    </value>
+  </block>
+  <block type="global_declaration" id="gOk" x="20" y="260">
+    <field name="NAME">datosOk</field>
+    <value name="VALUE">
+      <block type="logic_boolean" id="bf"><field name="BOOL">FALSE</field></block>
+    </value>
+  </block>
+
+  <block type="procedures_defnoreturn" id="pLimpiar" x="20" y="320">
+    <field name="NAME">LimpiarFormulario</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="sId0">
+        <field name="VAR">global idSeleccionado</field>
+        <value name="VALUE"><block type="math_number" id="z1"><field name="NUM">0</field></block></value>
+        <next>
+          <block type="component_set_get" id="cEmp">
+            <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoEmpresa"></mutation>
+            <field name="COMPONENT_SELECTOR">CampoEmpresa</field><field name="PROP">Text</field>
+            <value name="VALUE"><block type="text" id="t1"><field name="TEXT"></field></block></value>
+            <next>
+              <block type="component_set_get" id="cEple">
+                <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoEmpleado"></mutation>
+                <field name="COMPONENT_SELECTOR">CampoEmpleado</field><field name="PROP">Text</field>
+                <value name="VALUE"><block type="text" id="t2"><field name="TEXT"></field></block></value>
+                <next>
+                  <block type="component_set_get" id="cFun">
+                    <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoFunciones"></mutation>
+                    <field name="COMPONENT_SELECTOR">CampoFunciones</field><field name="PROP">Text</field>
+                    <value name="VALUE"><block type="text" id="t3"><field name="TEXT"></field></block></value>
+                    <next>
+                      <block type="component_set_get" id="cMon">
+                        <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoMonto</field><field name="PROP">Text</field>
+                        <value name="VALUE"><block type="text" id="t4"><field name="TEXT"></field></block></value>
+                        <next>
+                          <block type="component_set_get" id="cFre">
+                            <mutation component_type="Spinner" set_or_get="set" property_name="SelectionIndex" is_generic="false" instance_name="SpinnerFrecuencia"></mutation>
+                            <field name="COMPONENT_SELECTOR">SpinnerFrecuencia</field><field name="PROP">SelectionIndex</field>
+                            <value name="VALUE"><block type="math_number" id="nFre"><field name="NUM">1</field></block></value>
+                            <next>
+                              <block type="component_set_get" id="cF1">
+                                <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
+                                <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field><field name="PROP">Text</field>
+                                <value name="VALUE"><block type="text" id="tf1"><field name="TEXT">Seleccionar fecha de firma</field></block></value>
+                                <next>
+                                  <block type="component_set_get" id="cF2">
+                                    <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
+                                    <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field><field name="PROP">Text</field>
+                                    <value name="VALUE"><block type="text" id="tf2"><field name="TEXT">Seleccionar fecha de inicio</field></block></value>
+                                    <next>
+                                      <block type="component_set_get" id="cF3">
+                                        <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
+                                        <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Text</field>
+                                        <value name="VALUE"><block type="text" id="tf3"><field name="TEXT">Seleccionar fecha de fin</field></block></value>
+                                        <next>
+                                          <block type="component_set_get" id="cEst">
+                                            <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="LabelEstado"></mutation>
+                                            <field name="COMPONENT_SELECTOR">LabelEstado</field><field name="PROP">Text</field>
+                                            <value name="VALUE"><block type="text" id="te"><field name="TEXT">Estado: --</field></block></value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="procedures_defnoreturn" id="pRef" x="20" y="980">
+    <field name="NAME">RefrescarLista</field>
+    <statement name="STACK">
+      <block type="component_set_get" id="setEl">
+        <mutation component_type="ListView" set_or_get="set" property_name="Elements" is_generic="false" instance_name="ListaContratos"></mutation>
+        <field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">Elements</field>
+        <value name="VALUE"><block type="lists_create_with" id="ln"><mutation items="0"></mutation></block></value>
+        <next>
+          <block type="controls_forEach" id="forL">
+            <field name="VAR">contrato</field>
+            <value name="LIST"><block type="lexical_variable_get" id="gMo"><field name="VAR">global listaMostrada</field></block></value>
+            <statement name="DO">
+              <block type="lists_add_items" id="addL">
+                <mutation items="1"></mutation>
+                <value name="LIST">
+                  <block type="component_set_get" id="gEl">
+                    <mutation component_type="ListView" set_or_get="get" property_name="Elements" is_generic="false" instance_name="ListaContratos"></mutation>
+                    <field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">Elements</field>
+                  </block>
+                </value>
+                <value name="ITEM0">
+                  <block type="text_join" id="jL">
+                    <mutation items="7"></mutation>
+                    <value name="ADD0"><block type="lists_select_item" id="iId"><value name="LIST"><block type="lexical_variable_get" id="gc1"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="nId"><field name="NUM">1</field></block></value></block></value>
+                    <value name="ADD1"><block type="text" id="s1"><field name="TEXT"> | </field></block></value>
+                    <value name="ADD2"><block type="lists_select_item" id="iEm"><value name="LIST"><block type="lexical_variable_get" id="gc2"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="nEm"><field name="NUM">5</field></block></value></block></value>
+                    <value name="ADD3"><block type="text" id="s2"><field name="TEXT"> | </field></block></value>
+                    <value name="ADD4"><block type="lists_select_item" id="iPe"><value name="LIST"><block type="lexical_variable_get" id="gc3"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="nPe"><field name="NUM">6</field></block></value></block></value>
+                    <value name="ADD5"><block type="text" id="s3"><field name="TEXT"> | </field></block></value>
+                    <value name="ADD6"><block type="lists_select_item" id="iMo"><value name="LIST"><block type="lexical_variable_get" id="gc4"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="nMo"><field name="NUM">8</field></block></value></block></value>
+                  </block>
+                </value>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="procedures_defnoreturn" id="pFiltro" x="20" y="1500">
+    <field name="NAME">AplicarFiltro</field>
+    <statement name="STACK">
+      <block type="lexical_variable_set" id="clrM">
+        <field name="VAR">global listaMostrada</field>
+        <value name="VALUE"><block type="lists_create_with" id="nm"><mutation items="0"></mutation></block></value>
+        <next>
+          <block type="controls_forEach" id="forF">
+            <field name="VAR">contrato</field>
+            <value name="LIST"><block type="lexical_variable_get" id="gAll"><field name="VAR">global listaContratos</field></block></value>
+            <statement name="DO">
+              <block type="controls_if" id="ifF">
+                <value name="IF0">
+                  <block type="logic_operation" id="andF">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_operation" id="orE">
+                        <field name="OP">OR</field>
+                        <value name="A"><block type="text_isEmpty" id="eE"><value name="VALUE"><block type="component_set_get" id="gBE"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoBuscarEmpresa"></mutation><field name="COMPONENT_SELECTOR">CampoBuscarEmpresa</field><field name="PROP">Text</field></block></value></block></value>
+                        <value name="B"><block type="text_contains" id="cE"><value name="VALUE"><block type="lists_select_item" id="lE"><value name="LIST"><block type="lexical_variable_get" id="gf1"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="n5"><field name="NUM">5</field></block></value></block></value><value name="PIECE"><block type="component_set_get" id="gBE2"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoBuscarEmpresa"></mutation><field name="COMPONENT_SELECTOR">CampoBuscarEmpresa</field><field name="PROP">Text</field></block></value></block></value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_operation" id="orP">
+                        <field name="OP">OR</field>
+                        <value name="A"><block type="text_isEmpty" id="eP"><value name="VALUE"><block type="component_set_get" id="gBP"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoBuscarEmpleado"></mutation><field name="COMPONENT_SELECTOR">CampoBuscarEmpleado</field><field name="PROP">Text</field></block></value></block></value>
+                        <value name="B"><block type="text_contains" id="cP"><value name="VALUE"><block type="lists_select_item" id="lP"><value name="LIST"><block type="lexical_variable_get" id="gf2"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="n6"><field name="NUM">6</field></block></value></block></value><value name="PIECE"><block type="component_set_get" id="gBP2"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoBuscarEmpleado"></mutation><field name="COMPONENT_SELECTOR">CampoBuscarEmpleado</field><field name="PROP">Text</field></block></value></block></value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="lists_add_items" id="addF">
+                    <mutation items="1"></mutation>
+                    <value name="LIST"><block type="lexical_variable_get" id="gM2"><field name="VAR">global listaMostrada</field></block></value>
+                    <value name="ITEM0"><block type="lexical_variable_get" id="gC2"><field name="VAR">contrato</field></block></value>
+                  </block>
+                </statement>
+              </block>
+            </statement>
+            <next>
+              <block type="procedures_callnoreturn" id="callR"><mutation name="RefrescarLista"></mutation></block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evIni" x="700" y="20">
+    <mutation component_type="Form" is_generic="false" instance_name="ScreenContratos" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">ScreenContratos</field>
     <statement name="DO">
-      <block type="controls_openAnotherScreen" id="op">
-        <value name="SCREEN">
-          <block type="text" id="t">
-            <field name="TEXT">ScreenMenu</field>
+      <block type="lexical_variable_set" id="loadC">
+        <field name="VAR">global listaContratos</field>
+        <value name="VALUE">
+          <block type="component_method" id="getC">
+            <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1"><arg name="tag"></arg><arg name="valueIfTagNotThere"></arg></mutation>
+            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+            <value name="ARG0"><block type="text" id="tg"><field name="TEXT">contratos</field></block></value>
+            <value name="ARG1"><block type="lists_create_with" id="ec"><mutation items="0"></mutation></block></value>
+          </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" id="callL"><mutation name="LimpiarFormulario"></mutation>
+            <next>
+              <block type="procedures_callnoreturn" id="callF"><mutation name="AplicarFiltro"></mutation>
+                <next>
+                  <block type="component_set_get" id="enGps">
+                    <mutation component_type="LocationSensor" set_or_get="set" property_name="Enabled" is_generic="false" instance_name="Ubicacion1"></mutation>
+                    <field name="COMPONENT_SELECTOR">Ubicacion1</field><field name="PROP">Enabled</field>
+                    <value name="VALUE"><block type="logic_boolean" id="tGps"><field name="BOOL">TRUE</field></block></value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evGps" x="700" y="280">
+    <mutation component_type="LocationSensor" is_generic="false" instance_name="Ubicacion1" event_name="LocationChanged"></mutation>
+    <field name="COMPONENT_SELECTOR">Ubicacion1</field>
+    <statement name="DO">
+      <block type="component_set_get" id="setGps">
+        <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="LabelGps"></mutation>
+        <field name="COMPONENT_SELECTOR">LabelGps</field><field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="text_join" id="jGps">
+            <mutation items="4"></mutation>
+            <value name="ADD0"><block type="text" id="g1"><field name="TEXT">GPS: </field></block></value>
+            <value name="ADD1"><block type="component_set_get" id="lat"><mutation component_type="LocationSensor" set_or_get="get" property_name="CurrentLatitude" is_generic="false" instance_name="Ubicacion1"></mutation><field name="COMPONENT_SELECTOR">Ubicacion1</field><field name="PROP">CurrentLatitude</field></block></value>
+            <value name="ADD2"><block type="text" id="g2"><field name="TEXT">, </field></block></value>
+            <value name="ADD3"><block type="component_set_get" id="lon"><mutation component_type="LocationSensor" set_or_get="get" property_name="CurrentLongitude" is_generic="false" instance_name="Ubicacion1"></mutation><field name="COMPONENT_SELECTOR">Ubicacion1</field><field name="PROP">CurrentLongitude</field></block></value>
           </block>
         </value>
       </block>
     </statement>
   </block>
+
+  <block type="component_event" id="evVol" x="700" y="460">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonVolver" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonVolver</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="opM"><value name="SCREEN"><block type="text" id="tm"><field name="TEXT">ScreenMenu</field></block></value></block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evNuevo" x="700" y="560">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonNuevo" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonNuevo</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="callN"><mutation name="LimpiarFormulario"></mutation></block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evFil" x="700" y="660">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonFiltrar" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonFiltrar</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="callFi"><mutation name="AplicarFiltro"></mutation></block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evTodos" x="700" y="760">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonVerTodos" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonVerTodos</field>
+    <statement name="DO">
+      <block type="component_set_get" id="clrE">
+        <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoBuscarEmpresa"></mutation>
+        <field name="COMPONENT_SELECTOR">CampoBuscarEmpresa</field><field name="PROP">Text</field>
+        <value name="VALUE"><block type="text" id="te1"><field name="TEXT"></field></block></value>
+        <next>
+          <block type="component_set_get" id="clrP">
+            <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoBuscarEmpleado"></mutation>
+            <field name="COMPONENT_SELECTOR">CampoBuscarEmpleado</field><field name="PROP">Text</field>
+            <value name="VALUE"><block type="text" id="te2"><field name="TEXT"></field></block></value>
+            <next>
+              <block type="procedures_callnoreturn" id="callT"><mutation name="AplicarFiltro"></mutation></block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evPick" x="700" y="920">
+    <mutation component_type="ListView" is_generic="false" instance_name="ListaContratos" event_name="AfterPicking"></mutation>
+    <field name="COMPONENT_SELECTOR">ListaContratos</field>
+    <statement name="DO">
+      <block type="lexical_variable_set" id="setSel">
+        <field name="VAR">global idSeleccionado</field>
+        <value name="VALUE">
+          <block type="lists_select_item" id="idP">
+            <value name="LIST">
+              <block type="lists_select_item" id="itemP">
+                <value name="LIST"><block type="lexical_variable_get" id="gMp"><field name="VAR">global listaMostrada</field></block></value>
+                <value name="NUM"><block type="component_set_get" id="idx"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value>
+              </block>
+            </value>
+            <value name="NUM"><block type="math_number" id="nP1"><field name="NUM">1</field></block></value>
+          </block>
+        </value>
+        <next>
+          <block type="component_set_get" id="sf1">
+            <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
+            <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field><field name="PROP">Text</field>
+            <value name="VALUE"><block type="lists_select_item" id="d1"><value name="LIST"><block type="lists_select_item" id="it1"><value name="LIST"><block type="lexical_variable_get" id="gm1"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix1"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd1"><field name="NUM">2</field></block></value></block></value>
+            <next>
+              <block type="component_set_get" id="sf2">
+                <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
+                <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field><field name="PROP">Text</field>
+                <value name="VALUE"><block type="lists_select_item" id="d2"><value name="LIST"><block type="lists_select_item" id="it2"><value name="LIST"><block type="lexical_variable_get" id="gm2"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix2"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd2"><field name="NUM">3</field></block></value></block></value>
+                <next>
+                  <block type="component_set_get" id="sf3">
+                    <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
+                    <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Text</field>
+                    <value name="VALUE"><block type="lists_select_item" id="d3"><value name="LIST"><block type="lists_select_item" id="it3"><value name="LIST"><block type="lexical_variable_get" id="gm3"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix3"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd3"><field name="NUM">4</field></block></value></block></value>
+                    <next>
+                      <block type="component_set_get" id="sem">
+                        <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoEmpresa"></mutation>
+                        <field name="COMPONENT_SELECTOR">CampoEmpresa</field><field name="PROP">Text</field>
+                        <value name="VALUE"><block type="lists_select_item" id="d5"><value name="LIST"><block type="lists_select_item" id="it5"><value name="LIST"><block type="lexical_variable_get" id="gm5"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix5"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd5"><field name="NUM">5</field></block></value></block></value>
+                        <next>
+                          <block type="component_set_get" id="spe">
+                            <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoEmpleado"></mutation>
+                            <field name="COMPONENT_SELECTOR">CampoEmpleado</field><field name="PROP">Text</field>
+                            <value name="VALUE"><block type="lists_select_item" id="d6"><value name="LIST"><block type="lists_select_item" id="it6"><value name="LIST"><block type="lexical_variable_get" id="gm6"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix6"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd6"><field name="NUM">6</field></block></value></block></value>
+                            <next>
+                              <block type="component_set_get" id="sfu">
+                                <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoFunciones"></mutation>
+                                <field name="COMPONENT_SELECTOR">CampoFunciones</field><field name="PROP">Text</field>
+                                <value name="VALUE"><block type="lists_select_item" id="d7"><value name="LIST"><block type="lists_select_item" id="it7"><value name="LIST"><block type="lexical_variable_get" id="gm7"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix7"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd7"><field name="NUM">7</field></block></value></block></value>
+                                <next>
+                                  <block type="component_set_get" id="smo">
+                                    <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation>
+                                    <field name="COMPONENT_SELECTOR">CampoMonto</field><field name="PROP">Text</field>
+                                    <value name="VALUE"><block type="lists_select_item" id="d8"><value name="LIST"><block type="lists_select_item" id="it8"><value name="LIST"><block type="lexical_variable_get" id="gm8"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix8"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd8"><field name="NUM">8</field></block></value></block></value>
+                                    <next>
+                                      <block type="component_set_get" id="sfr">
+                                        <mutation component_type="Spinner" set_or_get="set" property_name="Selection" is_generic="false" instance_name="SpinnerFrecuencia"></mutation>
+                                        <field name="COMPONENT_SELECTOR">SpinnerFrecuencia</field><field name="PROP">Selection</field>
+                                        <value name="VALUE"><block type="lists_select_item" id="d9"><value name="LIST"><block type="lists_select_item" id="it9"><value name="LIST"><block type="lexical_variable_get" id="gm9"><field name="VAR">global listaMostrada</field></block></value><value name="NUM"><block type="component_set_get" id="ix9"><mutation component_type="ListView" set_or_get="get" property_name="SelectionIndex" is_generic="false" instance_name="ListaContratos"></mutation><field name="COMPONENT_SELECTOR">ListaContratos</field><field name="PROP">SelectionIndex</field></block></value></block></value><value name="NUM"><block type="math_number" id="nd9"><field name="NUM">9</field></block></value></block></value>
+                                        <next>
+                                          <block type="component_set_get" id="sest">
+                                            <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="LabelEstado"></mutation>
+                                            <field name="COMPONENT_SELECTOR">LabelEstado</field><field name="PROP">Text</field>
+                                            <value name="VALUE"><block type="text" id="tv2"><field name="TEXT">Estado: vigente</field></block></value>
+                                            <next>
+                                              <block type="controls_if" id="ifEst">
+                                                <value name="IF0">
+                                                  <block type="math_compare" id="cmpNow">
+                                                    <field name="OP">LT</field>
+                                                    <value name="A"><block type="component_method" id="msFin"><mutation component_type="Clock" method_name="GetMillis" is_generic="false" instance_name="Reloj1"><arg name="instant"></arg></mutation><field name="COMPONENT_SELECTOR">Reloj1</field><value name="ARG0"><block type="component_set_get" id="instFin"><mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaFin"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Instant</field></block></value></block></value>
+                                                    <value name="B"><block type="component_method" id="msNow"><mutation component_type="Clock" method_name="GetMillis" is_generic="false" instance_name="Reloj1"><arg name="instant"></arg></mutation><field name="COMPONENT_SELECTOR">Reloj1</field><value name="ARG0"><block type="component_method" id="now"><mutation component_type="Clock" method_name="Now" is_generic="false" instance_name="Reloj1"></mutation><field name="COMPONENT_SELECTOR">Reloj1</field></block></value></block></value>
+                                                  </block>
+                                                </value>
+                                                <statement name="DO0">
+                                                  <block type="component_set_get" id="sest2">
+                                                    <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="LabelEstado"></mutation>
+                                                    <field name="COMPONENT_SELECTOR">LabelEstado</field><field name="PROP">Text</field>
+                                                    <value name="VALUE"><block type="text" id="tv"><field name="TEXT">Estado: vencido</field></block></value>
+                                                  </block>
+                                                </statement>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="evFirma" x="700" y="1680">
+    <mutation component_type="DatePicker" is_generic="false" instance_name="DatePickerFechaFirma" event_name="AfterDateSet"></mutation>
+    <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field>
+    <statement name="DO">
+      <block type="component_set_get" id="setFT">
+        <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
+        <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field><field name="PROP">Text</field>
+        <value name="VALUE"><block type="component_method" id="fmtF"><mutation component_type="Clock" method_name="FormatDate" is_generic="false" instance_name="Reloj1"><arg name="instant"></arg><arg name="pattern"></arg></mutation><field name="COMPONENT_SELECTOR">Reloj1</field><value name="ARG0"><block type="component_set_get" id="iF"><mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaFirma"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field><field name="PROP">Instant</field></block></value><value name="ARG1"><block type="text" id="pF"><field name="TEXT">dd/MM/yyyy</field></block></value></block></value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="evInicio" x="700" y="1860">
+    <mutation component_type="DatePicker" is_generic="false" instance_name="DatePickerFechaInicio" event_name="AfterDateSet"></mutation>
+    <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
+    <statement name="DO">
+      <block type="component_set_get" id="setIT">
+        <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
+        <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field><field name="PROP">Text</field>
+        <value name="VALUE"><block type="component_method" id="fmtI"><mutation component_type="Clock" method_name="FormatDate" is_generic="false" instance_name="Reloj1"><arg name="instant"></arg><arg name="pattern"></arg></mutation><field name="COMPONENT_SELECTOR">Reloj1</field><value name="ARG0"><block type="component_set_get" id="iI"><mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaInicio"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field><field name="PROP">Instant</field></block></value><value name="ARG1"><block type="text" id="pI"><field name="TEXT">dd/MM/yyyy</field></block></value></block></value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="evFin" x="700" y="2040">
+    <mutation component_type="DatePicker" is_generic="false" instance_name="DatePickerFechaFin" event_name="AfterDateSet"></mutation>
+    <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field>
+    <statement name="DO">
+      <block type="component_set_get" id="setNT">
+        <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
+        <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Text</field>
+        <value name="VALUE"><block type="component_method" id="fmtN"><mutation component_type="Clock" method_name="FormatDate" is_generic="false" instance_name="Reloj1"><arg name="instant"></arg><arg name="pattern"></arg></mutation><field name="COMPONENT_SELECTOR">Reloj1</field><value name="ARG0"><block type="component_set_get" id="iN"><mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaFin"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Instant</field></block></value><value name="ARG1"><block type="text" id="pN"><field name="TEXT">dd/MM/yyyy</field></block></value></block></value>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evDel" x="20" y="2100">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonEliminar" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonEliminar</field>
+    <statement name="DO">
+      <block type="controls_if" id="ifDel">
+        <mutation else="1"></mutation>
+        <value name="IF0"><block type="math_compare" id="eq0"><field name="OP">EQ</field><value name="A"><block type="lexical_variable_get" id="gD"><field name="VAR">global idSeleccionado</field></block></value><value name="B"><block type="math_number" id="zD"><field name="NUM">0</field></block></value></block></value>
+        <statement name="DO0">
+          <block type="component_method" id="alD"><mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador"><arg name="notice"></arg></mutation><field name="COMPONENT_SELECTOR">Notificador</field><value name="ARG0"><block type="text" id="mD"><field name="TEXT">Seleccione un contrato de la lista</field></block></value></block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_forRange" id="forD">
+            <field name="VAR">i</field>
+            <value name="FROM"><block type="lists_length" id="lenD"><value name="VALUE"><block type="lexical_variable_get" id="gAllD"><field name="VAR">global listaContratos</field></block></value></block></value>
+            <value name="TO"><block type="math_number" id="nTo"><field name="NUM">1</field></block></value>
+            <value name="BY"><block type="math_number" id="nBy"><field name="NUM">-1</field></block></value>
+            <statement name="DO">
+              <block type="controls_if" id="ifId">
+                <value name="IF0"><block type="logic_compare" id="eqId"><field name="OP">EQ</field><value name="A"><block type="lists_select_item" id="idI"><value name="LIST"><block type="lists_select_item" id="itD"><value name="LIST"><block type="lexical_variable_get" id="gAD"><field name="VAR">global listaContratos</field></block></value><value name="NUM"><block type="lexical_variable_get" id="giD"><field name="VAR">i</field></block></value></block></value><value name="NUM"><block type="math_number" id="nDI"><field name="NUM">1</field></block></value></block></value><value name="B"><block type="lexical_variable_get" id="gSel"><field name="VAR">global idSeleccionado</field></block></value></block></value>
+                <statement name="DO0">
+                  <block type="lists_remove_item" id="rm"><value name="LIST"><block type="lexical_variable_get" id="gRm"><field name="VAR">global listaContratos</field></block></value><value name="INDEX"><block type="lexical_variable_get" id="giR"><field name="VAR">i</field></block></value></block>
+                </statement>
+              </block>
+            </statement>
+            <next>
+              <block type="component_method" id="saveD"><mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"><arg name="tag"></arg><arg name="valueToStore"></arg></mutation><field name="COMPONENT_SELECTOR">TinyDB1</field><value name="ARG0"><block type="text" id="tD"><field name="TEXT">contratos</field></block></value><value name="ARG1"><block type="lexical_variable_get" id="gSaveD"><field name="VAR">global listaContratos</field></block></value>
+                <next>
+                  <block type="procedures_callnoreturn" id="callLD"><mutation name="LimpiarFormulario"></mutation>
+                    <next>
+                      <block type="procedures_callnoreturn" id="callFD"><mutation name="AplicarFiltro"></mutation>
+                        <next>
+                          <block type="component_method" id="alD2"><mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador"><arg name="notice"></arg></mutation><field name="COMPONENT_SELECTOR">Notificador</field><value name="ARG0"><block type="text" id="mD2"><field name="TEXT">Contrato eliminado</field></block></value></block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evSave" x="20" y="2680">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonGuardar" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonGuardar</field>
+    <statement name="DO">
+      <block type="controls_if" id="ifV">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_operation" id="orV"><field name="OP">OR</field>
+            <value name="A"><block type="logic_operation" id="orV2"><field name="OP">OR</field>
+              <value name="A"><block type="text_isEmpty" id="e1"><value name="VALUE"><block type="component_set_get" id="g1"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpresa"></mutation><field name="COMPONENT_SELECTOR">CampoEmpresa</field><field name="PROP">Text</field></block></value></block></value>
+              <value name="B"><block type="text_isEmpty" id="e2"><value name="VALUE"><block type="component_set_get" id="g2"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpleado"></mutation><field name="COMPONENT_SELECTOR">CampoEmpleado</field><field name="PROP">Text</field></block></value></block></value>
+            </block></value>
+            <value name="B"><block type="logic_operation" id="orV3"><field name="OP">OR</field>
+              <value name="A"><block type="text_isEmpty" id="e3"><value name="VALUE"><block type="component_set_get" id="g3"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoFunciones"></mutation><field name="COMPONENT_SELECTOR">CampoFunciones</field><field name="PROP">Text</field></block></value></block></value>
+              <value name="B"><block type="logic_operation" id="orV4"><field name="OP">OR</field>
+                <value name="A"><block type="text_isEmpty" id="e4"><value name="VALUE"><block type="component_set_get" id="g4"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation><field name="COMPONENT_SELECTOR">CampoMonto</field><field name="PROP">Text</field></block></value></block></value>
+                <value name="B"><block type="logic_compare" id="eqF"><field name="OP">EQ</field><value name="A"><block type="component_set_get" id="gF"><mutation component_type="Spinner" set_or_get="get" property_name="Selection" is_generic="false" instance_name="SpinnerFrecuencia"></mutation><field name="COMPONENT_SELECTOR">SpinnerFrecuencia</field><field name="PROP">Selection</field></block></value><value name="B"><block type="text" id="tF"><field name="TEXT">Seleccionar frecuencia</field></block></value></block></value>
+              </block></value>
+            </block></value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="component_method" id="alV"><mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador"><arg name="notice"></arg></mutation><field name="COMPONENT_SELECTOR">Notificador</field><value name="ARG0"><block type="text" id="mV"><field name="TEXT">Complete empresa, empleado, funciones, monto y frecuencia</field></block></value></block>
+        </statement>
+        <statement name="ELSE">
+          <block type="controls_if" id="ifFe">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="logic_operation" id="orFe"><field name="OP">OR</field>
+                <value name="A"><block type="text_contains" id="cF1"><value name="VALUE"><block type="component_set_get" id="tF1"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field><field name="PROP">Text</field></block></value><value name="PIECE"><block type="text" id="p1"><field name="TEXT">Seleccionar</field></block></value></block></value>
+                <value name="B"><block type="logic_operation" id="orFe2"><field name="OP">OR</field>
+                  <value name="A"><block type="text_contains" id="cF2"><value name="VALUE"><block type="component_set_get" id="tF2"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field><field name="PROP">Text</field></block></value><value name="PIECE"><block type="text" id="p2"><field name="TEXT">Seleccionar</field></block></value></block></value>
+                  <value name="B"><block type="text_contains" id="cF3"><value name="VALUE"><block type="component_set_get" id="tF3"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Text</field></block></value><value name="PIECE"><block type="text" id="p3"><field name="TEXT">Seleccionar</field></block></value></block></value>
+                </block></value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="component_method" id="alF"><mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador"><arg name="notice"></arg></mutation><field name="COMPONENT_SELECTOR">Notificador</field><value name="ARG0"><block type="text" id="mF"><field name="TEXT">Seleccione las tres fechas</field></block></value></block>
+            </statement>
+            <statement name="ELSE">
+              <block type="lexical_variable_set" id="setMax">
+                <field name="VAR">global maxId</field>
+                <value name="VALUE"><block type="math_number" id="m0"><field name="NUM">0</field></block></value>
+                <next>
+                  <block type="controls_forEach" id="forMax">
+                    <field name="VAR">contrato</field>
+                    <value name="LIST"><block type="lexical_variable_get" id="gMaxL"><field name="VAR">global listaContratos</field></block></value>
+                    <statement name="DO">
+                      <block type="controls_if" id="ifMax">
+                        <value name="IF0"><block type="math_compare" id="gt"><field name="OP">GT</field><value name="A"><block type="lists_select_item" id="idM"><value name="LIST"><block type="lexical_variable_get" id="gCM"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="nM1"><field name="NUM">1</field></block></value></block></value><value name="B"><block type="lexical_variable_get" id="gMx"><field name="VAR">global maxId</field></block></value></block></value>
+                        <statement name="DO0">
+                          <block type="lexical_variable_set" id="upMax"><field name="VAR">global maxId</field><value name="VALUE"><block type="lists_select_item" id="idM2"><value name="LIST"><block type="lexical_variable_get" id="gCM2"><field name="VAR">contrato</field></block></value><value name="NUM"><block type="math_number" id="nM2"><field name="NUM">1</field></block></value></block></value></block>
+                        </statement>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="controls_if" id="ifNew">
+                        <mutation else="1"></mutation>
+                        <value name="IF0"><block type="math_compare" id="eqN"><field name="OP">EQ</field><value name="A"><block type="lexical_variable_get" id="gSel2"><field name="VAR">global idSeleccionado</field></block></value><value name="B"><block type="math_number" id="zN"><field name="NUM">0</field></block></value></block></value>
+                        <statement name="DO0">
+                          <block type="lists_add_items" id="addC"><mutation items="1"></mutation>
+                            <value name="LIST"><block type="lexical_variable_get" id="gAdd"><field name="VAR">global listaContratos</field></block></value>
+                            <value name="ITEM0">
+                              <block type="lists_create_with" id="nuevo"><mutation items="9"></mutation>
+                                <value name="ADD0"><block type="math_arithmetic" id="sum"><field name="OP">ADD</field><value name="A"><block type="lexical_variable_get" id="gMx2"><field name="VAR">global maxId</field></block></value><value name="B"><block type="math_number" id="one"><field name="NUM">1</field></block></value></block></value>
+                                <value name="ADD1"><block type="component_set_get" id="a1"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field><field name="PROP">Text</field></block></value>
+                                <value name="ADD2"><block type="component_set_get" id="a2"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field><field name="PROP">Text</field></block></value>
+                                <value name="ADD3"><block type="component_set_get" id="a3"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Text</field></block></value>
+                                <value name="ADD4"><block type="component_set_get" id="a4"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpresa"></mutation><field name="COMPONENT_SELECTOR">CampoEmpresa</field><field name="PROP">Text</field></block></value>
+                                <value name="ADD5"><block type="component_set_get" id="a5"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpleado"></mutation><field name="COMPONENT_SELECTOR">CampoEmpleado</field><field name="PROP">Text</field></block></value>
+                                <value name="ADD6"><block type="component_set_get" id="a6"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoFunciones"></mutation><field name="COMPONENT_SELECTOR">CampoFunciones</field><field name="PROP">Text</field></block></value>
+                                <value name="ADD7"><block type="component_set_get" id="a7"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation><field name="COMPONENT_SELECTOR">CampoMonto</field><field name="PROP">Text</field></block></value>
+                                <value name="ADD8"><block type="component_set_get" id="a8"><mutation component_type="Spinner" set_or_get="get" property_name="Selection" is_generic="false" instance_name="SpinnerFrecuencia"></mutation><field name="COMPONENT_SELECTOR">SpinnerFrecuencia</field><field name="PROP">Selection</field></block></value>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <statement name="ELSE">
+                          <block type="controls_forRange" id="forU">
+                            <field name="VAR">i</field>
+                            <value name="FROM"><block type="math_number" id="f1"><field name="NUM">1</field></block></value>
+                            <value name="TO"><block type="lists_length" id="lenU"><value name="VALUE"><block type="lexical_variable_get" id="gLU"><field name="VAR">global listaContratos</field></block></value></block></value>
+                            <value name="BY"><block type="math_number" id="f2"><field name="NUM">1</field></block></value>
+                            <statement name="DO">
+                              <block type="controls_if" id="ifU">
+                                <value name="IF0"><block type="logic_compare" id="eqU"><field name="OP">EQ</field><value name="A"><block type="lists_select_item" id="idU"><value name="LIST"><block type="lists_select_item" id="itU"><value name="LIST"><block type="lexical_variable_get" id="gCU"><field name="VAR">global listaContratos</field></block></value><value name="NUM"><block type="lexical_variable_get" id="giU"><field name="VAR">i</field></block></value></block></value><value name="NUM"><block type="math_number" id="nU1"><field name="NUM">1</field></block></value></block></value><value name="B"><block type="lexical_variable_get" id="gSU"><field name="VAR">global idSeleccionado</field></block></value></block></value>
+                                <statement name="DO0">
+                                  <block type="lists_replace_item" id="rep">
+                                    <value name="LIST"><block type="lexical_variable_get" id="gRU"><field name="VAR">global listaContratos</field></block></value>
+                                    <value name="NUM"><block type="lexical_variable_get" id="giU2"><field name="VAR">i</field></block></value>
+                                    <value name="ITEM">
+                                      <block type="lists_create_with" id="edit"><mutation items="9"></mutation>
+                                        <value name="ADD0"><block type="lexical_variable_get" id="gSU2"><field name="VAR">global idSeleccionado</field></block></value>
+                                        <value name="ADD1"><block type="component_set_get" id="b1"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field><field name="PROP">Text</field></block></value>
+                                        <value name="ADD2"><block type="component_set_get" id="b2"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field><field name="PROP">Text</field></block></value>
+                                        <value name="ADD3"><block type="component_set_get" id="b3"><mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation><field name="COMPONENT_SELECTOR">DatePickerFechaFin</field><field name="PROP">Text</field></block></value>
+                                        <value name="ADD4"><block type="component_set_get" id="b4"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpresa"></mutation><field name="COMPONENT_SELECTOR">CampoEmpresa</field><field name="PROP">Text</field></block></value>
+                                        <value name="ADD5"><block type="component_set_get" id="b5"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpleado"></mutation><field name="COMPONENT_SELECTOR">CampoEmpleado</field><field name="PROP">Text</field></block></value>
+                                        <value name="ADD6"><block type="component_set_get" id="b6"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoFunciones"></mutation><field name="COMPONENT_SELECTOR">CampoFunciones</field><field name="PROP">Text</field></block></value>
+                                        <value name="ADD7"><block type="component_set_get" id="b7"><mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation><field name="COMPONENT_SELECTOR">CampoMonto</field><field name="PROP">Text</field></block></value>
+                                        <value name="ADD8"><block type="component_set_get" id="b8"><mutation component_type="Spinner" set_or_get="get" property_name="Selection" is_generic="false" instance_name="SpinnerFrecuencia"></mutation><field name="COMPONENT_SELECTOR">SpinnerFrecuencia</field><field name="PROP">Selection</field></block></value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                              </block>
+                            </statement>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="component_method" id="saveC"><mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1"><arg name="tag"></arg><arg name="valueToStore"></arg></mutation><field name="COMPONENT_SELECTOR">TinyDB1</field><value name="ARG0"><block type="text" id="tC"><field name="TEXT">contratos</field></block></value><value name="ARG1"><block type="lexical_variable_get" id="gSC"><field name="VAR">global listaContratos</field></block></value>
+                            <next>
+                              <block type="procedures_callnoreturn" id="callFS"><mutation name="AplicarFiltro"></mutation>
+                                <next>
+                                  <block type="component_method" id="alS"><mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador"><arg name="notice"></arg></mutation><field name="COMPONENT_SELECTOR">Notificador</field><value name="ARG0"><block type="text" id="mS"><field name="TEXT">Contrato guardado</field></block></value></block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
 </xml>
+
