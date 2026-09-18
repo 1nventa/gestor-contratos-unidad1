@@ -1,283 +1,86 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="procedures_defnoreturn" id="procLimpiar" x="20" y="20">
-    <field name="NAME">LimpiarFormulario</field>
-    <statement name="STACK">
-      <block type="component_set_get" id="cEmpresa">
-        <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoEmpresa"></mutation>
-        <field name="COMPONENT_SELECTOR">CampoEmpresa</field>
-        <field name="PROP">Text</field>
-        <value name="VALUE">
-          <block type="text" id="tEmpresa">
-            <field name="TEXT"></field>
-          </block>
-        </value>
-        <next>
-          <block type="component_set_get" id="cEmpleado">
-            <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoEmpleado"></mutation>
-            <field name="COMPONENT_SELECTOR">CampoEmpleado</field>
-            <field name="PROP">Text</field>
-            <value name="VALUE">
-              <block type="text" id="tEmpleado">
-                <field name="TEXT"></field>
-              </block>
-            </value>
-            <next>
-              <block type="component_set_get" id="cFunciones">
-                <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoFunciones"></mutation>
-                <field name="COMPONENT_SELECTOR">CampoFunciones</field>
-                <field name="PROP">Text</field>
-                <value name="VALUE">
-                  <block type="text" id="tFunciones">
-                    <field name="TEXT"></field>
-                  </block>
-                </value>
-                <next>
-                  <block type="component_set_get" id="cMonto">
-                    <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation>
-                    <field name="COMPONENT_SELECTOR">CampoMonto</field>
-                    <field name="PROP">Text</field>
-                    <value name="VALUE">
-                      <block type="text" id="tMonto">
-                        <field name="TEXT"></field>
-                      </block>
-                    </value>
-                    <next>
-                      <block type="component_set_get" id="cFrec">
-                        <mutation component_type="Spinner" set_or_get="set" property_name="SelectionIndex" is_generic="false" instance_name="SpinnerFrecuencia"></mutation>
-                        <field name="COMPONENT_SELECTOR">SpinnerFrecuencia</field>
-                        <field name="PROP">SelectionIndex</field>
-                        <value name="VALUE">
-                          <block type="math_number" id="n1">
-                            <field name="NUM">1</field>
-                          </block>
-                        </value>
-                        <next>
-                          <block type="component_set_get" id="cFirma">
-                            <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
-                            <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field>
-                            <field name="PROP">Text</field>
-                            <value name="VALUE">
-                              <block type="text" id="tFirma">
-                                <field name="TEXT">Seleccionar fecha de firma</field>
-                              </block>
-                            </value>
-                            <next>
-                              <block type="component_set_get" id="cInicio">
-                                <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
-                                <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
-                                <field name="PROP">Text</field>
-                                <value name="VALUE">
-                                  <block type="text" id="tInicio">
-                                    <field name="TEXT">Seleccionar fecha de inicio</field>
-                                  </block>
-                                </value>
-                                <next>
-                                  <block type="component_set_get" id="cFin">
-                                    <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
-                                    <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field>
-                                    <field name="PROP">Text</field>
-                                    <value name="VALUE">
-                                      <block type="text" id="tFin">
-                                        <field name="TEXT">Seleccionar fecha de fin</field>
-                                      </block>
-                                    </value>
-                                    <next>
-                                      <block type="component_set_get" id="cEstado">
-                                        <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="LabelEstado"></mutation>
-                                        <field name="COMPONENT_SELECTOR">LabelEstado</field>
-                                        <field name="PROP">Text</field>
-                                        <value name="VALUE">
-                                          <block type="text" id="tEstado">
-                                            <field name="TEXT">Estado del contrato: --</field>
-                                          </block>
-                                        </value>
-                                      </block>
-                                    </next>
-                                  </block>
-                                </next>
-                              </block>
-                            </next>
-                          </block>
-                        </next>
-                      </block>
-                    </next>
-                  </block>
-                </next>
-              </block>
-            </next>
-          </block>
-        </next>
+  <block type="global_declaration" id="gEncontrado" x="20" y="20">
+    <field name="NAME">encontrado</field>
+    <value name="VALUE">
+      <block type="logic_boolean" id="gF">
+        <field name="BOOL">FALSE</field>
       </block>
-    </statement>
+    </value>
+  </block>
+  <block type="global_declaration" id="gClave" x="20" y="80">
+    <field name="NAME">claveEncontrada</field>
+    <value name="VALUE">
+      <block type="text" id="gC">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="gEmail" x="20" y="140">
+    <field name="NAME">emailEncontrado</field>
+    <value name="VALUE">
+      <block type="text" id="gE">
+        <field name="TEXT"></field>
+      </block>
+    </value>
   </block>
 
-  <block type="component_event" id="evCancelar" x="20" y="420">
-    <mutation component_type="Button" is_generic="false" instance_name="BotonCancelar" event_name="Click"></mutation>
-    <field name="COMPONENT_SELECTOR">BotonCancelar</field>
+  <block type="component_event" id="evReg" x="20" y="220">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonIrRegistro" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonIrRegistro</field>
     <statement name="DO">
-      <block type="procedures_callnoreturn" id="callLimpiar">
-        <mutation name="LimpiarFormulario"></mutation>
-      </block>
-    </statement>
-  </block>
-
-  <block type="component_event" id="evFirma" x="720" y="20">
-    <mutation component_type="DatePicker" is_generic="false" instance_name="DatePickerFechaFirma" event_name="AfterDateSet"></mutation>
-    <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field>
-    <statement name="DO">
-      <block type="component_set_get" id="setFirmaTxt">
-        <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
-        <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field>
-        <field name="PROP">Text</field>
-        <value name="VALUE">
-          <block type="component_method" id="fmtFirma" inline="false">
-            <mutation component_type="Clock" method_name="FormatDate" is_generic="false" instance_name="Reloj1">
-              <arg name="instant"></arg>
-              <arg name="pattern"></arg>
-            </mutation>
-            <field name="COMPONENT_SELECTOR">Reloj1</field>
-            <value name="ARG0">
-              <block type="component_set_get" id="getFirmaInst">
-                <mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
-                <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field>
-                <field name="PROP">Instant</field>
-              </block>
-            </value>
-            <value name="ARG1">
-              <block type="text" id="patFirma">
-                <field name="TEXT">dd/MM/yyyy</field>
-              </block>
-            </value>
+      <block type="controls_openAnotherScreen" id="opReg">
+        <value name="SCREEN">
+          <block type="text" id="tReg">
+            <field name="TEXT">ScreenRegistro</field>
           </block>
         </value>
       </block>
     </statement>
   </block>
 
-  <block type="component_event" id="evInicio" x="720" y="220">
-    <mutation component_type="DatePicker" is_generic="false" instance_name="DatePickerFechaInicio" event_name="AfterDateSet"></mutation>
-    <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
+  <block type="component_event" id="evShowRec" x="20" y="340">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonMostrarRecuperar" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonMostrarRecuperar</field>
     <statement name="DO">
-      <block type="component_set_get" id="setInicioTxt">
-        <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
-        <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
-        <field name="PROP">Text</field>
+      <block type="component_set_get" id="setVis">
+        <mutation component_type="VerticalArrangement" set_or_get="set" property_name="Visible" is_generic="false" instance_name="CajaRecuperar"></mutation>
+        <field name="COMPONENT_SELECTOR">CajaRecuperar</field>
+        <field name="PROP">Visible</field>
         <value name="VALUE">
-          <block type="component_method" id="fmtInicio" inline="false">
-            <mutation component_type="Clock" method_name="FormatDate" is_generic="false" instance_name="Reloj1">
-              <arg name="instant"></arg>
-              <arg name="pattern"></arg>
-            </mutation>
-            <field name="COMPONENT_SELECTOR">Reloj1</field>
-            <value name="ARG0">
-              <block type="component_set_get" id="getInicioInst">
-                <mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
-                <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
-                <field name="PROP">Instant</field>
-              </block>
-            </value>
-            <value name="ARG1">
-              <block type="text" id="patInicio">
-                <field name="TEXT">dd/MM/yyyy</field>
-              </block>
-            </value>
+          <block type="logic_boolean" id="vTrue">
+            <field name="BOOL">TRUE</field>
           </block>
         </value>
       </block>
     </statement>
   </block>
 
-  <block type="component_event" id="evFin" x="720" y="420">
-    <mutation component_type="DatePicker" is_generic="false" instance_name="DatePickerFechaFin" event_name="AfterDateSet"></mutation>
-    <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field>
-    <statement name="DO">
-      <block type="component_set_get" id="setFinTxt">
-        <mutation component_type="DatePicker" set_or_get="set" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
-        <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field>
-        <field name="PROP">Text</field>
-        <value name="VALUE">
-          <block type="component_method" id="fmtFin" inline="false">
-            <mutation component_type="Clock" method_name="FormatDate" is_generic="false" instance_name="Reloj1">
-              <arg name="instant"></arg>
-              <arg name="pattern"></arg>
-            </mutation>
-            <field name="COMPONENT_SELECTOR">Reloj1</field>
-            <value name="ARG0">
-              <block type="component_set_get" id="getFinInst">
-                <mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
-                <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field>
-                <field name="PROP">Instant</field>
-              </block>
-            </value>
-            <value name="ARG1">
-              <block type="text" id="patFin">
-                <field name="TEXT">dd/MM/yyyy</field>
-              </block>
-            </value>
-          </block>
-        </value>
-      </block>
-    </statement>
-  </block>
-
-  <block type="component_event" id="evRegistrar" x="20" y="620">
-    <mutation component_type="Button" is_generic="false" instance_name="BotonRegistrar" event_name="Click"></mutation>
-    <field name="COMPONENT_SELECTOR">BotonRegistrar</field>
+  <block type="component_event" id="evEntrar" x="20" y="480">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonEntrar" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonEntrar</field>
     <statement name="DO">
       <block type="controls_if" id="ifVacios">
         <mutation else="1"></mutation>
         <value name="IF0">
-          <block type="logic_operation" id="or1">
+          <block type="logic_operation" id="orV">
             <field name="OP">OR</field>
             <value name="A">
-              <block type="logic_operation" id="or2">
-                <field name="OP">OR</field>
-                <value name="A">
-                  <block type="logic_operation" id="or3">
-                    <field name="OP">OR</field>
-                    <value name="A">
-                      <block type="text_isEmpty" id="eEmp">
-                        <value name="VALUE">
-                          <block type="component_set_get" id="gEmp">
-                            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpresa"></mutation>
-                            <field name="COMPONENT_SELECTOR">CampoEmpresa</field>
-                            <field name="PROP">Text</field>
-                          </block>
-                        </value>
-                      </block>
-                    </value>
-                    <value name="B">
-                      <block type="text_isEmpty" id="eEple">
-                        <value name="VALUE">
-                          <block type="component_set_get" id="gEple">
-                            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmpleado"></mutation>
-                            <field name="COMPONENT_SELECTOR">CampoEmpleado</field>
-                            <field name="PROP">Text</field>
-                          </block>
-                        </value>
-                      </block>
-                    </value>
-                  </block>
-                </value>
-                <value name="B">
-                  <block type="text_isEmpty" id="eFun">
-                    <value name="VALUE">
-                      <block type="component_set_get" id="gFun">
-                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoFunciones"></mutation>
-                        <field name="COMPONENT_SELECTOR">CampoFunciones</field>
-                        <field name="PROP">Text</field>
-                      </block>
-                    </value>
+              <block type="text_isEmpty" id="eU">
+                <value name="VALUE">
+                  <block type="component_set_get" id="gU">
+                    <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoUsuario"></mutation>
+                    <field name="COMPONENT_SELECTOR">CampoUsuario</field>
+                    <field name="PROP">Text</field>
                   </block>
                 </value>
               </block>
             </value>
             <value name="B">
-              <block type="text_isEmpty" id="eMon">
+              <block type="text_isEmpty" id="eC">
                 <value name="VALUE">
-                  <block type="component_set_get" id="gMon">
-                    <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation>
-                    <field name="COMPONENT_SELECTOR">CampoMonto</field>
+                  <block type="component_set_get" id="gC2">
+                    <mutation component_type="PasswordTextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClave"></mutation>
+                    <field name="COMPONENT_SELECTOR">CampoClave</field>
                     <field name="PROP">Text</field>
                   </block>
                 </value>
@@ -293,152 +96,94 @@
             <field name="COMPONENT_SELECTOR">Notificador</field>
             <value name="ARG0">
               <block type="text" id="m1">
-                <field name="TEXT">Complete empresa, empleado, funciones y monto</field>
+                <field name="TEXT">Digite usuario y clave</field>
               </block>
             </value>
           </block>
         </statement>
         <statement name="ELSE">
-          <block type="controls_if" id="ifMonto">
-            <mutation else="1"></mutation>
-            <value name="IF0">
-              <block type="logic_operation" id="orMonto">
-                <field name="OP">OR</field>
-                <value name="A">
-                  <block type="logic_negate" id="notNum">
-                    <value name="BOOL">
-                      <block type="math_is_a_number" id="isNum">
-                        <value name="NUM">
-                          <block type="component_set_get" id="gMon2">
-                            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation>
-                            <field name="COMPONENT_SELECTOR">CampoMonto</field>
-                            <field name="PROP">Text</field>
-                          </block>
-                        </value>
-                      </block>
-                    </value>
-                  </block>
-                </value>
-                <value name="B">
-                  <block type="math_compare" id="cmp0">
-                    <field name="OP">LTE</field>
-                    <value name="A">
-                      <block type="component_set_get" id="gMon3">
-                        <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoMonto"></mutation>
-                        <field name="COMPONENT_SELECTOR">CampoMonto</field>
-                        <field name="PROP">Text</field>
-                      </block>
-                    </value>
-                    <value name="B">
-                      <block type="math_number" id="cero">
-                        <field name="NUM">0</field>
-                      </block>
-                    </value>
-                  </block>
-                </value>
+          <block type="lexical_variable_set" id="setF">
+            <field name="VAR">global encontrado</field>
+            <value name="VALUE">
+              <block type="logic_boolean" id="bf">
+                <field name="BOOL">FALSE</field>
               </block>
             </value>
-            <statement name="DO0">
-              <block type="component_method" id="al2">
-                <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
-                  <arg name="notice"></arg>
-                </mutation>
-                <field name="COMPONENT_SELECTOR">Notificador</field>
-                <value name="ARG0">
-                  <block type="text" id="m2">
-                    <field name="TEXT">El monto debe ser un numero mayor que 0</field>
-                  </block>
-                </value>
-              </block>
-            </statement>
-            <statement name="ELSE">
-              <block type="controls_if" id="ifFrec">
-                <mutation else="1"></mutation>
-                <value name="IF0">
-                  <block type="logic_compare" id="eqFrec">
-                    <field name="OP">EQ</field>
-                    <value name="A">
-                      <block type="component_set_get" id="gFrec">
-                        <mutation component_type="Spinner" set_or_get="get" property_name="Selection" is_generic="false" instance_name="SpinnerFrecuencia"></mutation>
-                        <field name="COMPONENT_SELECTOR">SpinnerFrecuencia</field>
-                        <field name="PROP">Selection</field>
-                      </block>
-                    </value>
-                    <value name="B">
-                      <block type="text" id="tFrecSel">
-                        <field name="TEXT">Seleccionar frecuencia</field>
-                      </block>
-                    </value>
-                  </block>
-                </value>
-                <statement name="DO0">
-                  <block type="component_method" id="al3">
-                    <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
-                      <arg name="notice"></arg>
+            <next>
+              <block type="controls_forEach" id="forU">
+                <field name="VAR">usuario</field>
+                <value name="LIST">
+                  <block type="component_method" id="getUs">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1">
+                      <arg name="tag"></arg>
+                      <arg name="valueIfTagNotThere"></arg>
                     </mutation>
-                    <field name="COMPONENT_SELECTOR">Notificador</field>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
                     <value name="ARG0">
-                      <block type="text" id="m3">
-                        <field name="TEXT">Seleccione la frecuencia de pago</field>
+                      <block type="text" id="tUs">
+                        <field name="TEXT">usuarios</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="lists_create_with" id="empty1">
+                        <mutation items="0"></mutation>
                       </block>
                     </value>
                   </block>
-                </statement>
-                <statement name="ELSE">
-                  <block type="controls_if" id="ifFechas">
-                    <mutation else="1"></mutation>
+                </value>
+                <statement name="DO">
+                  <block type="controls_if" id="ifUser">
                     <value name="IF0">
-                      <block type="logic_operation" id="orF1">
-                        <field name="OP">OR</field>
+                      <block type="logic_operation" id="and1">
+                        <field name="OP">AND</field>
                         <value name="A">
-                          <block type="logic_operation" id="orF2">
-                            <field name="OP">OR</field>
+                          <block type="logic_compare" id="eqU">
+                            <field name="OP">EQ</field>
                             <value name="A">
-                              <block type="text_contains" id="cSel1">
-                                <value name="VALUE">
-                                  <block type="component_set_get" id="gFtxt">
-                                    <mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
-                                    <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field>
-                                    <field name="PROP">Text</field>
+                              <block type="lists_select_item" id="i1">
+                                <value name="LIST">
+                                  <block type="lexical_variable_get" id="gu">
+                                    <field name="VAR">usuario</field>
                                   </block>
                                 </value>
-                                <value name="PIECE">
-                                  <block type="text" id="pSel1">
-                                    <field name="TEXT">Seleccionar</field>
+                                <value name="NUM">
+                                  <block type="math_number" id="n1">
+                                    <field name="NUM">1</field>
                                   </block>
                                 </value>
                               </block>
                             </value>
                             <value name="B">
-                              <block type="text_contains" id="cSel2">
-                                <value name="VALUE">
-                                  <block type="component_set_get" id="gItxt">
-                                    <mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
-                                    <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
-                                    <field name="PROP">Text</field>
-                                  </block>
-                                </value>
-                                <value name="PIECE">
-                                  <block type="text" id="pSel2">
-                                    <field name="TEXT">Seleccionar</field>
-                                  </block>
-                                </value>
+                              <block type="component_set_get" id="gU2">
+                                <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoUsuario"></mutation>
+                                <field name="COMPONENT_SELECTOR">CampoUsuario</field>
+                                <field name="PROP">Text</field>
                               </block>
                             </value>
                           </block>
                         </value>
                         <value name="B">
-                          <block type="text_contains" id="cSel3">
-                            <value name="VALUE">
-                              <block type="component_set_get" id="gNtxt">
-                                <mutation component_type="DatePicker" set_or_get="get" property_name="Text" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
-                                <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field>
-                                <field name="PROP">Text</field>
+                          <block type="logic_compare" id="eqC">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="lists_select_item" id="i2">
+                                <value name="LIST">
+                                  <block type="lexical_variable_get" id="gu2">
+                                    <field name="VAR">usuario</field>
+                                  </block>
+                                </value>
+                                <value name="NUM">
+                                  <block type="math_number" id="n2">
+                                    <field name="NUM">2</field>
+                                  </block>
+                                </value>
                               </block>
                             </value>
-                            <value name="PIECE">
-                              <block type="text" id="pSel3">
-                                <field name="TEXT">Seleccionar</field>
+                            <value name="B">
+                              <block type="component_set_get" id="gCl">
+                                <mutation component_type="PasswordTextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClave"></mutation>
+                                <field name="COMPONENT_SELECTOR">CampoClave</field>
+                                <field name="PROP">Text</field>
                               </block>
                             </value>
                           </block>
@@ -446,155 +191,272 @@
                       </block>
                     </value>
                     <statement name="DO0">
-                      <block type="component_method" id="al4">
+                      <block type="lexical_variable_set" id="setT">
+                        <field name="VAR">global encontrado</field>
+                        <value name="VALUE">
+                          <block type="logic_boolean" id="bt">
+                            <field name="BOOL">TRUE</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="component_method" id="saveSes">
+                            <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1">
+                              <arg name="tag"></arg>
+                              <arg name="valueToStore"></arg>
+                            </mutation>
+                            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                            <value name="ARG0">
+                              <block type="text" id="tSes">
+                                <field name="TEXT">sesion</field>
+                              </block>
+                            </value>
+                            <value name="ARG1">
+                              <block type="component_set_get" id="gU3">
+                                <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoUsuario"></mutation>
+                                <field name="COMPONENT_SELECTOR">CampoUsuario</field>
+                                <field name="PROP">Text</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="controls_openAnotherScreen" id="opMenu">
+                                <value name="SCREEN">
+                                  <block type="text" id="tMenu">
+                                    <field name="TEXT">ScreenMenu</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="ifNo">
+                    <value name="IF0">
+                      <block type="logic_negate" id="notE">
+                        <value name="BOOL">
+                          <block type="lexical_variable_get" id="gEnc">
+                            <field name="VAR">global encontrado</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="component_method" id="al2">
                         <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
                           <arg name="notice"></arg>
                         </mutation>
                         <field name="COMPONENT_SELECTOR">Notificador</field>
                         <value name="ARG0">
-                          <block type="text" id="m4">
-                            <field name="TEXT">Seleccione la fecha de firma, inicio y fin</field>
+                          <block type="text" id="m2">
+                            <field name="TEXT">Usuario o clave incorrectos</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evEnviar" x="620" y="220">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonEnviarClave" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonEnviarClave</field>
+    <statement name="DO">
+      <block type="lexical_variable_set" id="setC0">
+        <field name="VAR">global claveEncontrada</field>
+        <value name="VALUE">
+          <block type="text" id="t0">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="setE0">
+            <field name="VAR">global emailEncontrado</field>
+            <value name="VALUE">
+              <block type="text" id="t00">
+                <field name="TEXT"></field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_forEach" id="forE">
+                <field name="VAR">usuario</field>
+                <value name="LIST">
+                  <block type="component_method" id="getUs2">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1">
+                      <arg name="tag"></arg>
+                      <arg name="valueIfTagNotThere"></arg>
+                    </mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="tUs2">
+                        <field name="TEXT">usuarios</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="lists_create_with" id="empty2">
+                        <mutation items="0"></mutation>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="controls_if" id="ifMail">
+                    <value name="IF0">
+                      <block type="logic_compare" id="eqM">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="lists_select_item" id="i4">
+                            <value name="LIST">
+                              <block type="lexical_variable_get" id="gu3">
+                                <field name="VAR">usuario</field>
+                              </block>
+                            </value>
+                            <value name="NUM">
+                              <block type="math_number" id="n4">
+                                <field name="NUM">4</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="component_set_get" id="gMail">
+                            <mutation component_type="TextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoEmailRecuperar"></mutation>
+                            <field name="COMPONENT_SELECTOR">CampoEmailRecuperar</field>
+                            <field name="PROP">Text</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="lexical_variable_set" id="setC1">
+                        <field name="VAR">global claveEncontrada</field>
+                        <value name="VALUE">
+                          <block type="lists_select_item" id="iPwd">
+                            <value name="LIST">
+                              <block type="lexical_variable_get" id="gu4">
+                                <field name="VAR">usuario</field>
+                              </block>
+                            </value>
+                            <value name="NUM">
+                              <block type="math_number" id="nPwd">
+                                <field name="NUM">2</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="lexical_variable_set" id="setE1">
+                            <field name="VAR">global emailEncontrado</field>
+                            <value name="VALUE">
+                              <block type="lists_select_item" id="iMail">
+                                <value name="LIST">
+                                  <block type="lexical_variable_get" id="gu5">
+                                    <field name="VAR">usuario</field>
+                                  </block>
+                                </value>
+                                <value name="NUM">
+                                  <block type="math_number" id="nMail">
+                                    <field name="NUM">4</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="ifHay">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="text_isEmpty" id="eClave">
+                        <value name="VALUE">
+                          <block type="lexical_variable_get" id="gClave2">
+                            <field name="VAR">global claveEncontrada</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="component_method" id="al3">
+                        <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
+                          <arg name="notice"></arg>
+                        </mutation>
+                        <field name="COMPONENT_SELECTOR">Notificador</field>
+                        <value name="ARG0">
+                          <block type="text" id="m3">
+                            <field name="TEXT">No hay un usuario con ese email</field>
                           </block>
                         </value>
                       </block>
                     </statement>
                     <statement name="ELSE">
-                      <block type="controls_if" id="ifIniFirma">
-                        <mutation else="1"></mutation>
-                        <value name="IF0">
-                          <block type="math_compare" id="cmpIni">
-                            <field name="OP">LT</field>
-                            <value name="A">
-                              <block type="component_method" id="msIni">
-                                <mutation component_type="Clock" method_name="GetMillis" is_generic="false" instance_name="Reloj1">
-                                  <arg name="instant"></arg>
-                                </mutation>
-                                <field name="COMPONENT_SELECTOR">Reloj1</field>
-                                <value name="ARG0">
-                                  <block type="component_set_get" id="instIni">
-                                    <mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
-                                    <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
-                                    <field name="PROP">Instant</field>
-                                  </block>
-                                </value>
+                      <block type="component_set_get" id="setData">
+                        <mutation component_type="ActivityStarter" set_or_get="set" property_name="DataUri" is_generic="false" instance_name="Correo1"></mutation>
+                        <field name="COMPONENT_SELECTOR">Correo1</field>
+                        <field name="PROP">DataUri</field>
+                        <value name="VALUE">
+                          <block type="text_join" id="joinMail">
+                            <mutation items="4"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="tm1">
+                                <field name="TEXT">mailto:</field>
                               </block>
                             </value>
-                            <value name="B">
-                              <block type="component_method" id="msFirma">
-                                <mutation component_type="Clock" method_name="GetMillis" is_generic="false" instance_name="Reloj1">
-                                  <arg name="instant"></arg>
-                                </mutation>
-                                <field name="COMPONENT_SELECTOR">Reloj1</field>
-                                <value name="ARG0">
-                                  <block type="component_set_get" id="instFirma">
-                                    <mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaFirma"></mutation>
-                                    <field name="COMPONENT_SELECTOR">DatePickerFechaFirma</field>
-                                    <field name="PROP">Instant</field>
-                                  </block>
-                                </value>
+                            <value name="ADD1">
+                              <block type="lexical_variable_get" id="gEm2">
+                                <field name="VAR">global emailEncontrado</field>
+                              </block>
+                            </value>
+                            <value name="ADD2">
+                              <block type="text" id="tm2">
+                                <field name="TEXT">?subject=Clave Gestor de Contratos&amp;body=Su clave es: </field>
+                              </block>
+                            </value>
+                            <value name="ADD3">
+                              <block type="lexical_variable_get" id="gCl3">
+                                <field name="VAR">global claveEncontrada</field>
                               </block>
                             </value>
                           </block>
                         </value>
-                        <statement name="DO0">
-                          <block type="component_method" id="al5">
-                            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
-                              <arg name="notice"></arg>
-                            </mutation>
-                            <field name="COMPONENT_SELECTOR">Notificador</field>
-                            <value name="ARG0">
-                              <block type="text" id="m5">
-                                <field name="TEXT">La fecha de inicio no puede ser anterior a la fecha de firma</field>
-                              </block>
-                            </value>
-                          </block>
-                        </statement>
-                        <statement name="ELSE">
-                          <block type="controls_if" id="ifFinIni">
-                            <mutation else="1"></mutation>
-                            <value name="IF0">
-                              <block type="math_compare" id="cmpFin">
-                                <field name="OP">LT</field>
-                                <value name="A">
-                                  <block type="component_method" id="msFin">
-                                    <mutation component_type="Clock" method_name="GetMillis" is_generic="false" instance_name="Reloj1">
-                                      <arg name="instant"></arg>
-                                    </mutation>
-                                    <field name="COMPONENT_SELECTOR">Reloj1</field>
-                                    <value name="ARG0">
-                                      <block type="component_set_get" id="instFin">
-                                        <mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaFin"></mutation>
-                                        <field name="COMPONENT_SELECTOR">DatePickerFechaFin</field>
-                                        <field name="PROP">Instant</field>
-                                      </block>
-                                    </value>
-                                  </block>
-                                </value>
-                                <value name="B">
-                                  <block type="component_method" id="msIni2">
-                                    <mutation component_type="Clock" method_name="GetMillis" is_generic="false" instance_name="Reloj1">
-                                      <arg name="instant"></arg>
-                                    </mutation>
-                                    <field name="COMPONENT_SELECTOR">Reloj1</field>
-                                    <value name="ARG0">
-                                      <block type="component_set_get" id="instIni2">
-                                        <mutation component_type="DatePicker" set_or_get="get" property_name="Instant" is_generic="false" instance_name="DatePickerFechaInicio"></mutation>
-                                        <field name="COMPONENT_SELECTOR">DatePickerFechaInicio</field>
-                                        <field name="PROP">Instant</field>
-                                      </block>
-                                    </value>
-                                  </block>
-                                </value>
-                              </block>
-                            </value>
-                            <statement name="DO0">
-                              <block type="component_method" id="al6">
+                        <next>
+                          <block type="component_method" id="startMail">
+                            <mutation component_type="ActivityStarter" method_name="StartActivity" is_generic="false" instance_name="Correo1"></mutation>
+                            <field name="COMPONENT_SELECTOR">Correo1</field>
+                            <next>
+                              <block type="component_method" id="al4">
                                 <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
                                   <arg name="notice"></arg>
                                 </mutation>
                                 <field name="COMPONENT_SELECTOR">Notificador</field>
                                 <value name="ARG0">
-                                  <block type="text" id="m6">
-                                    <field name="TEXT">La fecha de fin no puede ser anterior a la fecha de inicio</field>
+                                  <block type="text" id="m4">
+                                    <field name="TEXT">Se abrio el correo para enviar su clave</field>
                                   </block>
                                 </value>
                               </block>
-                            </statement>
-                            <statement name="ELSE">
-                              <block type="component_set_get" id="setOk">
-                                <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="LabelEstado"></mutation>
-                                <field name="COMPONENT_SELECTOR">LabelEstado</field>
-                                <field name="PROP">Text</field>
-                                <value name="VALUE">
-                                  <block type="text" id="tOk">
-                                    <field name="TEXT">Datos validos</field>
-                                  </block>
-                                </value>
-                                <next>
-                                  <block type="component_method" id="al7">
-                                    <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
-                                      <arg name="notice"></arg>
-                                    </mutation>
-                                    <field name="COMPONENT_SELECTOR">Notificador</field>
-                                    <value name="ARG0">
-                                      <block type="text" id="m7">
-                                        <field name="TEXT">Los datos del contrato son validos</field>
-                                      </block>
-                                    </value>
-                                  </block>
-                                </next>
-                              </block>
-                            </statement>
+                            </next>
                           </block>
-                        </statement>
+                        </next>
                       </block>
                     </statement>
                   </block>
-                </statement>
+                </next>
               </block>
-            </statement>
+            </next>
           </block>
-        </statement>
+        </next>
       </block>
     </statement>
   </block>

@@ -1,0 +1,458 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="global_declaration" id="gLista" x="20" y="20">
+    <field name="NAME">listaUsuarios</field>
+    <value name="VALUE">
+      <block type="lists_create_with" id="e0">
+        <mutation items="0"></mutation>
+      </block>
+    </value>
+  </block>
+  <block type="global_declaration" id="gIdx" x="20" y="80">
+    <field name="NAME">indice</field>
+    <value name="VALUE">
+      <block type="math_number" id="n0">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+
+  <block type="component_event" id="evIni" x="20" y="160">
+    <mutation component_type="Form" is_generic="false" instance_name="ScreenMenu" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">ScreenMenu</field>
+    <statement name="DO">
+      <block type="controls_if" id="ifSes">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="text_isEmpty" id="eSes">
+            <value name="VALUE">
+              <block type="component_method" id="getSes">
+                <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1">
+                  <arg name="tag"></arg>
+                  <arg name="valueIfTagNotThere"></arg>
+                </mutation>
+                <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                <value name="ARG0">
+                  <block type="text" id="tSes">
+                    <field name="TEXT">sesion</field>
+                  </block>
+                </value>
+                <value name="ARG1">
+                  <block type="text" id="tVacio">
+                    <field name="TEXT"></field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="controls_openAnotherScreen" id="opL">
+            <value name="SCREEN">
+              <block type="text" id="tL">
+                <field name="TEXT">Screen1</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="component_set_get" id="setLab">
+            <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="LabelSesion"></mutation>
+            <field name="COMPONENT_SELECTOR">LabelSesion</field>
+            <field name="PROP">Text</field>
+            <value name="VALUE">
+              <block type="text_join" id="j1">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="tu">
+                    <field name="TEXT">Usuario: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="component_method" id="getSes2">
+                    <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1">
+                      <arg name="tag"></arg>
+                      <arg name="valueIfTagNotThere"></arg>
+                    </mutation>
+                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                    <value name="ARG0">
+                      <block type="text" id="tSes2">
+                        <field name="TEXT">sesion</field>
+                      </block>
+                    </value>
+                    <value name="ARG1">
+                      <block type="text" id="tVacio2">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evCon" x="20" y="520">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonContratos" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonContratos</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="opC">
+        <value name="SCREEN">
+          <block type="text" id="tC">
+            <field name="TEXT">ScreenContratos</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evUsu" x="20" y="640">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonUsuarios" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonUsuarios</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="opU">
+        <value name="SCREEN">
+          <block type="text" id="tU">
+            <field name="TEXT">ScreenUsuarios</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evSalir" x="20" y="760">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonSalir" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonSalir</field>
+    <statement name="DO">
+      <block type="component_method" id="clr">
+        <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1">
+          <arg name="tag"></arg>
+          <arg name="valueToStore"></arg>
+        </mutation>
+        <field name="COMPONENT_SELECTOR">TinyDB1</field>
+        <value name="ARG0">
+          <block type="text" id="tSes3">
+            <field name="TEXT">sesion</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="text" id="tEmpty">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_openAnotherScreen" id="opLogin">
+            <value name="SCREEN">
+              <block type="text" id="tLogin">
+                <field name="TEXT">Screen1</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+
+  <block type="component_event" id="evClave" x="520" y="160">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonGuardarClave" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonGuardarClave</field>
+    <statement name="DO">
+      <block type="lexical_variable_set" id="setL">
+        <field name="VAR">global listaUsuarios</field>
+        <value name="VALUE">
+          <block type="component_method" id="getL">
+            <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1">
+              <arg name="tag"></arg>
+              <arg name="valueIfTagNotThere"></arg>
+            </mutation>
+            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+            <value name="ARG0">
+              <block type="text" id="tUs">
+                <field name="TEXT">usuarios</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="lists_create_with" id="empty">
+                <mutation items="0"></mutation>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="lexical_variable_set" id="setI">
+            <field name="VAR">global indice</field>
+            <value name="VALUE">
+              <block type="math_number" id="nI">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_forRange" id="forR">
+                <field name="VAR">i</field>
+                <value name="FROM">
+                  <block type="math_number" id="n1">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <value name="TO">
+                  <block type="lists_length" id="len">
+                    <value name="VALUE">
+                      <block type="lexical_variable_get" id="gL">
+                        <field name="VAR">global listaUsuarios</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="BY">
+                  <block type="math_number" id="nBy">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="controls_if" id="ifU">
+                    <value name="IF0">
+                      <block type="logic_compare" id="eqU">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="lists_select_item" id="i1">
+                            <value name="LIST">
+                              <block type="lists_select_item" id="uItem">
+                                <value name="LIST">
+                                  <block type="lexical_variable_get" id="gL2">
+                                    <field name="VAR">global listaUsuarios</field>
+                                  </block>
+                                </value>
+                                <value name="NUM">
+                                  <block type="lexical_variable_get" id="gi">
+                                    <field name="VAR">i</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="NUM">
+                              <block type="math_number" id="nU">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="component_method" id="getSes3">
+                            <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyDB1">
+                              <arg name="tag"></arg>
+                              <arg name="valueIfTagNotThere"></arg>
+                            </mutation>
+                            <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                            <value name="ARG0">
+                              <block type="text" id="tS">
+                                <field name="TEXT">sesion</field>
+                              </block>
+                            </value>
+                            <value name="ARG1">
+                              <block type="text" id="tE">
+                                <field name="TEXT"></field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="lexical_variable_set" id="setIdx">
+                        <field name="VAR">global indice</field>
+                        <value name="VALUE">
+                          <block type="lexical_variable_get" id="gi2">
+                            <field name="VAR">i</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="ifIdx">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="math_compare" id="cmp0">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="lexical_variable_get" id="gIdx">
+                            <field name="VAR">global indice</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="z">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="component_method" id="al1">
+                        <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
+                          <arg name="notice"></arg>
+                        </mutation>
+                        <field name="COMPONENT_SELECTOR">Notificador</field>
+                        <value name="ARG0">
+                          <block type="text" id="m1">
+                            <field name="TEXT">No se encontro el usuario</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="controls_if" id="ifOld">
+                        <mutation else="1"></mutation>
+                        <value name="IF0">
+                          <block type="logic_compare" id="neqOld">
+                            <field name="OP">NEQ</field>
+                            <value name="A">
+                              <block type="lists_select_item" id="iPwd">
+                                <value name="LIST">
+                                  <block type="lists_select_item" id="u2">
+                                    <value name="LIST">
+                                      <block type="lexical_variable_get" id="gL3">
+                                        <field name="VAR">global listaUsuarios</field>
+                                      </block>
+                                    </value>
+                                    <value name="NUM">
+                                      <block type="lexical_variable_get" id="gIdx2">
+                                        <field name="VAR">global indice</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="NUM">
+                                  <block type="math_number" id="n2">
+                                    <field name="NUM">2</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="component_set_get" id="gOld">
+                                <mutation component_type="PasswordTextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClaveActual"></mutation>
+                                <field name="COMPONENT_SELECTOR">CampoClaveActual</field>
+                                <field name="PROP">Text</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="component_method" id="al2">
+                            <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
+                              <arg name="notice"></arg>
+                            </mutation>
+                            <field name="COMPONENT_SELECTOR">Notificador</field>
+                            <value name="ARG0">
+                              <block type="text" id="m2">
+                                <field name="TEXT">La clave actual no coincide</field>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                        <statement name="ELSE">
+                          <block type="controls_if" id="ifNew">
+                            <mutation else="1"></mutation>
+                            <value name="IF0">
+                              <block type="text_isEmpty" id="eNew">
+                                <value name="VALUE">
+                                  <block type="component_set_get" id="gNew">
+                                    <mutation component_type="PasswordTextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClaveNueva"></mutation>
+                                    <field name="COMPONENT_SELECTOR">CampoClaveNueva</field>
+                                    <field name="PROP">Text</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="component_method" id="al3">
+                                <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
+                                  <arg name="notice"></arg>
+                                </mutation>
+                                <field name="COMPONENT_SELECTOR">Notificador</field>
+                                <value name="ARG0">
+                                  <block type="text" id="m3">
+                                    <field name="TEXT">Digite la clave nueva</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </statement>
+                            <statement name="ELSE">
+                              <block type="lists_replace_item" id="rep">
+                                <value name="LIST">
+                                  <block type="lists_select_item" id="u3">
+                                    <value name="LIST">
+                                      <block type="lexical_variable_get" id="gL4">
+                                        <field name="VAR">global listaUsuarios</field>
+                                      </block>
+                                    </value>
+                                    <value name="NUM">
+                                      <block type="lexical_variable_get" id="gIdx3">
+                                        <field name="VAR">global indice</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="NUM">
+                                  <block type="math_number" id="nPwd">
+                                    <field name="NUM">2</field>
+                                  </block>
+                                </value>
+                                <value name="ITEM">
+                                  <block type="component_set_get" id="gNew2">
+                                    <mutation component_type="PasswordTextBox" set_or_get="get" property_name="Text" is_generic="false" instance_name="CampoClaveNueva"></mutation>
+                                    <field name="COMPONENT_SELECTOR">CampoClaveNueva</field>
+                                    <field name="PROP">Text</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="component_method" id="save">
+                                    <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyDB1">
+                                      <arg name="tag"></arg>
+                                      <arg name="valueToStore"></arg>
+                                    </mutation>
+                                    <field name="COMPONENT_SELECTOR">TinyDB1</field>
+                                    <value name="ARG0">
+                                      <block type="text" id="tSave">
+                                        <field name="TEXT">usuarios</field>
+                                      </block>
+                                    </value>
+                                    <value name="ARG1">
+                                      <block type="lexical_variable_get" id="gL5">
+                                        <field name="VAR">global listaUsuarios</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="component_method" id="al4">
+                                        <mutation component_type="Notifier" method_name="ShowAlert" is_generic="false" instance_name="Notificador">
+                                          <arg name="notice"></arg>
+                                        </mutation>
+                                        <field name="COMPONENT_SELECTOR">Notificador</field>
+                                        <value name="ARG0">
+                                          <block type="text" id="m4">
+                                            <field name="TEXT">Clave actualizada</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

@@ -1,0 +1,128 @@
+#|
+$JSON
+{
+  "authURL": ["creator.kodular.io"],
+  "YaVersion": "242",
+  "Source": "Form",
+  "Properties": {
+    "$Name": "ScreenRegistro",
+    "$Type": "Form",
+    "$Version": "44",
+    "AlignHorizontal": "3",
+    "AppName": "Gestor de Contratos",
+    "BackgroundColor": "&HFFF7FAFC",
+    "ScreenOrientation": "portrait",
+    "Scrollable": "True",
+    "ShowListsAsJson": "True",
+    "Sizing": "Responsive",
+    "Theme": "AppTheme.Light.DarkActionBar",
+    "Title": "Crear usuario",
+    "TitleBarColor": "&HFF1A365D",
+    "Uuid": "0",
+    "$Components": [
+      {
+        "$Name": "LabelTitulo",
+        "$Type": "Label",
+        "$Version": "10",
+        "FontBold": "True",
+        "FontSize": "22",
+        "Text": "Registro de usuario",
+        "TextAlignment": "1",
+        "TextColor": "&HFF1A365D",
+        "Width": "-1090",
+        "Uuid": "1201"
+      },
+      {
+        "$Name": "CampoNombre",
+        "$Type": "TextBox",
+        "$Version": "13",
+        "FontSize": "18",
+        "Hint": "Nombre",
+        "Width": "-1090",
+        "Uuid": "1202"
+      },
+      {
+        "$Name": "CampoUsuario",
+        "$Type": "TextBox",
+        "$Version": "13",
+        "FontSize": "18",
+        "Hint": "Username",
+        "Width": "-1090",
+        "Uuid": "1203"
+      },
+      {
+        "$Name": "CampoEmail",
+        "$Type": "TextBox",
+        "$Version": "13",
+        "FontSize": "18",
+        "Hint": "Email",
+        "Width": "-1090",
+        "Uuid": "1204"
+      },
+      {
+        "$Name": "CampoClave",
+        "$Type": "PasswordTextBox",
+        "$Version": "6",
+        "FontSize": "18",
+        "Hint": "Clave",
+        "Width": "-1090",
+        "Uuid": "1205"
+      },
+      {
+        "$Name": "CampoClave2",
+        "$Type": "PasswordTextBox",
+        "$Version": "6",
+        "FontSize": "18",
+        "Hint": "Confirmar clave",
+        "Width": "-1090",
+        "Uuid": "1206"
+      },
+      {
+        "$Name": "Espacio1",
+        "$Type": "SpaceView",
+        "$Version": "1",
+        "Height": "12",
+        "Uuid": "1207"
+      },
+      {
+        "$Name": "BotonRegistrar",
+        "$Type": "Button",
+        "$Version": "13",
+        "BackgroundColor": "&HFF2B6CB0",
+        "FontBold": "True",
+        "FontSize": "16",
+        "Shape": "1",
+        "Text": "Registrar",
+        "TextColor": "&HFFFFFFFF",
+        "Width": "-1090",
+        "Uuid": "1208"
+      },
+      {
+        "$Name": "BotonVolver",
+        "$Type": "Button",
+        "$Version": "13",
+        "BackgroundColor": "&HFF718096",
+        "FontBold": "True",
+        "FontSize": "16",
+        "Shape": "1",
+        "Text": "Volver",
+        "TextColor": "&HFFFFFFFF",
+        "Width": "-1090",
+        "Uuid": "1209"
+      },
+      {
+        "$Name": "Notificador",
+        "$Type": "Notifier",
+        "$Version": "11",
+        "Uuid": "1210"
+      },
+      {
+        "$Name": "TinyDB1",
+        "$Type": "TinyDB",
+        "$Version": "2",
+        "Uuid": "1211"
+      }
+    ]
+  }
+}
+|#

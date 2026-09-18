@@ -1,0 +1,15 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="component_event" id="evVolver" x="20" y="20">
+    <mutation component_type="Button" is_generic="false" instance_name="BotonVolver" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BotonVolver</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="op">
+        <value name="SCREEN">
+          <block type="text" id="t">
+            <field name="TEXT">ScreenMenu</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>
