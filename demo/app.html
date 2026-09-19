@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestor de Contratos</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #1a202c; color: #1a202c; }
+    .phone { max-width: 420px; margin: 0 auto; min-height: 100vh; background: #f7fafc; }
+    .bar { background: #1a365d; color: #fff; padding: 16px; font-weight: bold; text-align: center; }
+    .box { padding: 16px; }
+    h2 { margin: 0 0 8px; color: #1a365d; text-align: center; }
+    p.sub { text-align: center; color: #4a5568; margin-top: 0; }
+    input, select, textarea { width: 100%; margin: 6px 0; padding: 10px; font-size: 16px; border: 1px solid #cbd5e0; border-radius: 6px; }
+    button { width: 100%; margin: 6px 0; padding: 12px; border: 0; border-radius: 8px; font-size: 16px; font-weight: bold; color: #fff; background: #2b6cb0; }
+    .gray { background: #718096; }
+    .green { background: #38a169; }
+    .red { background: #e53e3e; }
+    .row { display: flex; gap: 8px; }
+    .row button { flex: 1; }
+    .item { background: #fff; border: 1px solid #e2e8f0; padding: 10px; margin: 6px 0; border-radius: 6px; }
+    .hidden { display: none; }
+    .ok { color: #276749; font-weight: bold; }
+    .bad { color: #c53030; font-weight: bold; }
+  </style>
+</head>
+<body>
+<div class="phone">
+  <div class="bar" id="titulo">Iniciar sesion</div>
+  <div class="box" id="app"></div>
+</div>
+<script>
+const db = {
+  get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d } catch { return d } },
+  set(k, v) { localStorage.setItem(k, JSON.stringify(v)) }
+};
+if (!db.get("usuarios")) db.set("usuarios", []);
+if (!db.get("contratos")) db.set("contratos", []);
+
+let selContrato = 0;
+let selUsuario = "";
+
+function go(name) { window[name](); }
+function usuarios() { return db.get("usuarios", []) }
+function contratos() { return db.get("contratos", []) }
+function sesion() { return db.get("sesion", "") }
+function msg(t) { alert(t) }
+
+function login() {
+  document.getElementById("titulo").textContent = "Iniciar sesion";
+  document.getElementById("app").innerHTML = `
+    <h2>GESTOR DE CONTRATOS</h2>
+    <p class="sub">Inicie sesion para continuar</p>
+    <input id="u" placeholder="Usuario">
+    <input id="c" type="password" placeholder="Clave">
+    <button onclick="entrar()">Entrar</button>
+    <button class="gray" onclick="registro()">Crear usuario</button>
+    <button class="gray" onclick="recuperar()">Recordar clave por email</button>`;
+}
+function registro() {
+  document.getElementById("titulo").textContent = "Crear usuario";
+  document.getElementById("app").innerHTML = `
+    <h2>Registro de usuario</h2>
+    <input id="n" placeholder="Nombre">
+    <input id="u" placeholder="Username">
+    <input id="e" placeholder="Email">
+    <input id="c" type="password" placeholder="Clave">
+    <input id="c2" type="password" placeholder="Confirmar clave">
+    <button onclick="guardarUsuario()">Registrar</button>
+    <button class="gray" onclick="login()">Volver</button>`;
+}
+function recuperar() {
+  document.getElementById("titulo").textContent = "Recordar clave";
+  document.getElementById("app").innerHTML = `
+    <h2>Recordar clave por email</h2>
+    <input id="e" placeholder="Email registrado">
+    <button onclick="enviarClave()">Enviar clave al correo</button>
+    <button class="gray" onclick="login()">Volver</button>`;
+}
+function menu() {
+  if (!sesion()) return login();
+  document.getElementById("titulo").textContent = "Menu";
+  document.getElementById("app").innerHTML = `
+    <h2>Menu principal</h2>
+    <p class="sub">Usuario: ${sesion()}</p>
+    <button onclick="pantallaContratos()">Contratos</button>
+    <button onclick="pantallaUsuarios()">Usuarios</button>
+    <input id="ca" type="password" placeholder="Clave actual">
+    <input id="cn" type="password" placeholder="Clave nueva">
+    <button class="green" onclick="cambiarClave()">Guardar clave</button>
+    <button class="gray" onclick="salir()">Cerrar sesion</button>`;
+}
+function pantallaContratos(lista) {
+  if (!sesion()) return login();
+  const items = lista || contratos();
+  document.getElementById("titulo").textContent = "Contratos";
+  document.getElementById("app").innerHTML = `
+    <input id="fe" placeholder="Reporte: empresa">
+    <input id="fp" placeholder="Reporte: empleado">
+    <div class="row"><button onclick="filtrarC()">Filtrar</button><button class="gray" onclick="pantallaContratos()">Ver todos</button></div>
+    <div id="lista">${items.map(c => `<div class="item" onclick="cargarC(${c.id})">${c.id} | ${c.empresa} | ${c.empleado} | ${c.monto}</div>`).join("") || "<p class='sub'>No hay contratos</p>"}</div>
+    <input id="firma" type="date">
+    <input id="inicio" type="date">
+    <input id="fin" type="date">
+    <input id="empresa" placeholder="Empresa">
+    <input id="empleado" placeholder="Empleado">
+    <textarea id="funciones" placeholder="Funciones"></textarea>
+    <input id="monto" type="number" placeholder="Monto">
+    <select id="frec">
+      <option>Seleccionar frecuencia</option>
+      <option>Semanal</option><option>Quincenal</option><option>Mensual</option>
+      <option>Bimestral</option><option>Trimestral</option><option>Semestral</option><option>Anual</option>
+    </select>
+    <p id="estado">Estado: --</p>
+    <p id="gps">GPS: obteniendo...</p>
+    <div class="row">
+      <button onclick="guardarC()">Guardar</button>
+      <button class="green" onclick="nuevoC()">Nuevo</button>
+      <button class="red" onclick="borrarC()">Eliminar</button>
+    </div>
+    <button class="gray" onclick="menu()">Volver</button>`;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      p => document.getElementById("gps").textContent = "GPS: " + p.coords.latitude.toFixed(4) + ", " + p.coords.longitude.toFixed(4),
+      () => document.getElementById("gps").textContent = "GPS: no disponible"
+    );
+  } else document.getElementById("gps").textContent = "GPS: no disponible";
+}
+function pantallaUsuarios(lista) {
+  if (!sesion()) return login();
+  const items = lista || usuarios();
+  document.getElementById("titulo").textContent = "Usuarios";
+  document.getElementById("app").innerHTML = `
+    <input id="fn" placeholder="Reporte: nombre">
+    <input id="fm" placeholder="Reporte: email">
+    <div class="row"><button onclick="filtrarU()">Filtrar</button><button class="gray" onclick="pantallaUsuarios()">Ver todos</button></div>
+    <div>${items.map(u => `<div class="item" onclick="cargarU('${u.username}')">${u.username} | ${u.nombre} | ${u.email}</div>`).join("")}</div>
+    <input id="n" placeholder="Nombre">
+    <input id="u" placeholder="Username">
+    <input id="e" placeholder="Email">
+    <input id="c" type="password" placeholder="Clave">
+    <div class="row">
+      <button onclick="guardarU()">Guardar</button>
+      <button class="green" onclick="nuevoU()">Nuevo</button>
+      <button class="red" onclick="borrarU()">Eliminar</button>
+    </div>
+    <button class="gray" onclick="menu()">Volver</button>`;
+}
+function entrar() {
+  const u = document.getElementById("u").value.trim();
+  const c = document.getElementById("c").value;
+  const hit = usuarios().find(x => x.username === u && x.password === c);
+  if (!u || !c) return msg("Digite usuario y clave");
+  if (!hit) return msg("Usuario o clave incorrectos");
+  db.set("sesion", u);
+  menu();
+}
+function guardarUsuario() {
+  const n = document.getElementById("n").value.trim();
+  const u = document.getElementById("u").value.trim();
+  const e = document.getElementById("e").value.trim();
+  const c = document.getElementById("c").value;
+  const c2 = document.getElementById("c2").value;
+  if (!n || !u || !e || !c || !c2) return msg("Complete todos los campos");
+  if (c !== c2) return msg("Las claves no coinciden");
+  if (!e.includes("@")) return msg("El email no es valido");
+  const list = usuarios();
+  if (list.some(x => x.username === u || x.email === e)) return msg("El usuario o el email ya existen");
+  list.push({ username: u, password: c, nombre: n, email: e });
+  db.set("usuarios", list);
+  msg("Usuario creado");
+  login();
+}
+function enviarClave() {
+  const e = document.getElementById("e").value.trim();
+  const hit = usuarios().find(x => x.email === e);
+  if (!hit) return msg("No hay un usuario con ese email");
+  location.href = "mailto:" + hit.email + "?subject=Clave Gestor de Contratos&body=Su clave es: " + hit.password;
+  msg("Se abrio el correo para enviar su clave");
+}
+function cambiarClave() {
+  const ca = document.getElementById("ca").value;
+  const cn = document.getElementById("cn").value;
+  const list = usuarios();
+  const i = list.findIndex(x => x.username === sesion());
+  if (i < 0) return msg("No se encontro el usuario");
+  if (list[i].password !== ca) return msg("La clave actual no coincide");
+  if (!cn) return msg("Digite la clave nueva");
+  list[i].password = cn;
+  db.set("usuarios", list);
+  msg("Clave actualizada");
+}
+function salir() { db.set("sesion", ""); login(); }
+function estado(fin) {
+  if (!fin) return "Estado: --";
+  return new Date(fin) < new Date(new Date().toDateString()) ? "Estado: vencido" : "Estado: vigente";
+}
+function nuevoC() { selContrato = 0; pantallaContratos(); }
+function cargarC(id) {
+  const c = contratos().find(x => x.id === id);
+  if (!c) return;
+  selContrato = id;
+  pantallaContratos();
+  document.getElementById("firma").value = c.fechaFirma;
+  document.getElementById("inicio").value = c.fechaInicio;
+  document.getElementById("fin").value = c.fechaFin;
+  document.getElementById("empresa").value = c.empresa;
+  document.getElementById("empleado").value = c.empleado;
+  document.getElementById("funciones").value = c.funciones;
+  document.getElementById("monto").value = c.monto;
+  document.getElementById("frec").value = c.frecuencia;
+  document.getElementById("estado").textContent = estado(c.fechaFin);
+}
+function guardarC() {
+  const c = {
+    fechaFirma: document.getElementById("firma").value,
+    fechaInicio: document.getElementById("inicio").value,
+    fechaFin: document.getElementById("fin").value,
+    empresa: document.getElementById("empresa").value.trim(),
+    empleado: document.getElementById("empleado").value.trim(),
+    funciones: document.getElementById("funciones").value.trim(),
+    monto: document.getElementById("monto").value,
+    frecuencia: document.getElementById("frec").value
+  };
+  if (!c.empresa || !c.empleado || !c.funciones || !c.monto || c.frecuencia === "Seleccionar frecuencia")
+    return msg("Complete empresa, empleado, funciones, monto y frecuencia");
+  if (!c.fechaFirma || !c.fechaInicio || !c.fechaFin) return msg("Seleccione las tres fechas");
+  const list = contratos();
+  if (!selContrato) {
+    c.id = list.reduce((m, x) => Math.max(m, x.id), 0) + 1;
+    list.push(c);
+  } else {
+    c.id = selContrato;
+    const i = list.findIndex(x => x.id === selContrato);
+    list[i] = c;
+  }
+  db.set("contratos", list);
+  document.getElementById("estado").textContent = estado(c.fechaFin);
+  msg("Contrato guardado");
+  pantallaContratos();
+}
+function borrarC() {
+  if (!selContrato) return msg("Seleccione un contrato de la lista");
+  db.set("contratos", contratos().filter(x => x.id !== selContrato));
+  selContrato = 0;
+  msg("Contrato eliminado");
+  pantallaContratos();
+}
+function filtrarC() {
+  const e = document.getElementById("fe").value.trim();
+  const p = document.getElementById("fp").value.trim();
+  pantallaContratos(contratos().filter(c => (!e || c.empresa.includes(e)) && (!p || c.empleado.includes(p))));
+}
+function nuevoU() { selUsuario = ""; pantallaUsuarios(); }
+function cargarU(username) {
+  const u = usuarios().find(x => x.username === username);
+  if (!u) return;
+  selUsuario = username;
+  pantallaUsuarios();
+  document.getElementById("n").value = u.nombre;
+  document.getElementById("u").value = u.username;
+  document.getElementById("e").value = u.email;
+  document.getElementById("c").value = u.password;
+}
+function guardarU() {
+  const n = document.getElementById("n").value.trim();
+  const u = document.getElementById("u").value.trim();
+  const e = document.getElementById("e").value.trim();
+  const c = document.getElementById("c").value;
+  if (!n || !u || !e || !c) return msg("Complete nombre, usuario, email y clave");
+  const list = usuarios();
+  if (list.some(x => x.username !== selUsuario && (x.username === u || x.email === e)))
+    return msg("El usuario o el email ya existen");
+  const row = { username: u, password: c, nombre: n, email: e };
+  if (!selUsuario) list.push(row);
+  else list[list.findIndex(x => x.username === selUsuario)] = row;
+  db.set("usuarios", list);
+  msg("Usuario guardado");
+  pantallaUsuarios();
+}
+function borrarU() {
+  if (!selUsuario) return msg("Seleccione un usuario de la lista");
+  if (selUsuario === sesion()) return msg("No puede eliminar el usuario con el que ingreso");
+  db.set("usuarios", usuarios().filter(x => x.username !== selUsuario));
+  selUsuario = "";
+  msg("Usuario eliminado");
+  pantallaUsuarios();
+}
+function filtrarU() {
+  const n = document.getElementById("fn").value.trim();
+  const e = document.getElementById("fm").value.trim();
+  pantallaUsuarios(usuarios().filter(u => (!n || u.nombre.includes(n)) && (!e || u.email.includes(e))));
+}
+login();
+</script>
+</body>
+</html>

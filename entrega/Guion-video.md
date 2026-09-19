@@ -14,6 +14,8 @@ El ejercicio que me asignaron es el 16, Contratos. La app esta hecha en Kodular,
 
 El repositorio es publico en GitHub. Ahora voy a mostrar primero la app como usuario y despues el codigo.
 
+Si Kodular no abre el aia, abre demo/app.html en Chrome y explica que es el mismo flujo de la app: TinyDB en Kodular es el localStorage de este demo. Luego muestra GitHub y las pantallas del proyecto Kodular.
+
 ---
 
 ## 2. Recorrido de la app (3 min)
