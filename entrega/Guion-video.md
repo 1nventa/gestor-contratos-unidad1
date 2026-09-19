@@ -8,7 +8,7 @@ Tiempo sugerido: 6 a 8 minutos.
 
 ## 1. Presentacion (30 s)
 
-Hola, mi nombre es Carlos Hernandez, codigo 7502410053. Este video es para la Unidad 1 de Desarrollo de Apps, Corte 1.
+Hola, mi nombre es Carlos Raul Hernandez Lopez, codigo 7502410053. Este video es para la Unidad 1 de Desarrollo de Apps, Corte 1.
 
 El ejercicio que me asignaron es el 16, Contratos. La app esta hecha en Kodular, guarda los datos en el celular con TinyDB, tiene login, CRUD de dos tablas, reportes y dos sensores: el reloj y el GPS.
 
@@ -80,4 +80,4 @@ TinyDB es el mismo en todas las pantallas, entonces lo que guardo en registro se
 
 Eso es todo. La persistencia es local, hay CRUD de las dos tablas, cuatro reportes, login, recordatorio de clave por email y dos sensores.
 
-Soy Carlos Hernandez, ejercicio 16, Unidad 1. Gracias.
+Soy Carlos Raul Hernandez Lopez, ejercicio 16, Unidad 1. Gracias.

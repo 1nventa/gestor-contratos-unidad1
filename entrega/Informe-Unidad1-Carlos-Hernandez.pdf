@@ -2,7 +2,7 @@
 1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
 2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
 3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>endobj
-4 0 obj<< /Length 811 >>stream
+4 0 obj<< /Length 822 >>stream
 BT
 /F1 18 Tf
 0.10 0.21 0.36 rg
@@ -17,7 +17,7 @@ BT
 (Codigo - nombre completo del alumno:) Tj
 /F2 11 Tf
 0 -16 Td
-(7502410053 - Carlos Hernandez) Tj
+(7502410053 - Carlos Raul Hernandez Lopez) Tj
 0 -36 Td
 /F1 11 Tf
 (Email institucional:) Tj
@@ -61,9 +61,9 @@ xref
 0000000056 00000 n 
 0000000111 00000 n 
 0000000245 00000 n 
-0000001105 00000 n 
-0000001178 00000 n 
+0000001116 00000 n 
+0000001189 00000 n 
 trailer<< /Size 7 /Root 1 0 R >>
 startxref
-1246
+1257
 %%EOF

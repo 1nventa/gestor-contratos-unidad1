@@ -2,7 +2,7 @@
 
 App en Kodular para el ejercicio 16 de la Unidad 1. Guarda usuarios y contratos en el celular con TinyDB.
 
-- Codigo - alumno: 7502410053 - Carlos Hernandez
+- Codigo - alumno: 7502410053 - Carlos Raul Hernandez Lopez
 - Correo: chernandezl1@unicartagena.edu.co
 - Repo: https://github.com/1nventa/gestor-contratos-unidad1
 
