@@ -2,7 +2,7 @@
 
 App en Kodular para el ejercicio 16 de la Unidad 1. Guarda usuarios y contratos en el celular con TinyDB.
 
-- Alumno: Carlos Hernandez
+- Codigo - alumno: 7502410053 - Carlos Hernandez
 - Correo: chernandezl1@unicartagena.edu.co
 - Repo: https://github.com/1nventa/gestor-contratos-unidad1
 
@@ -24,7 +24,7 @@ Si Kodular avisa que hay que actualizar componentes, acepta y revisa que las 5 p
 
 ## Entrega
 
-- Informe: `entrega/Informe-Unidad1-Carlos-Hernandez.docx`
+- Informe: `entrega/Informe-Unidad1-Carlos-Hernandez.pdf`
 - Guion del video: `entrega/Guion-video.md`
 
 El APK se genera en Kodular (Export / APK) cuando se vaya a entregar.

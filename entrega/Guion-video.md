@@ -8,7 +8,7 @@ Tiempo sugerido: 6 a 8 minutos.
 
 ## 1. Presentacion (30 s)
 
-Hola, mi nombre es Carlos Hernandez. Este video es para la Unidad 1 de Desarrollo de Apps, Corte 1.
+Hola, mi nombre es Carlos Hernandez, codigo 7502410053. Este video es para la Unidad 1 de Desarrollo de Apps, Corte 1.
 
 El ejercicio que me asignaron es el 16, Contratos. La app esta hecha en Kodular, guarda los datos en el celular con TinyDB, tiene login, CRUD de dos tablas, reportes y dos sensores: el reloj y el GPS.
 
