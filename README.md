@@ -9,7 +9,7 @@ App en Kodular para el ejercicio 16 de la Unidad 1. Guarda usuarios y contratos 
 ## Como abrirla
 
 1. Entra a https://creator.kodular.io
-2. Importa `aia/GestorContratos-parte04.aia`
+2. Importa `aia/GestorContratos.aia`
 3. Pruebala con Kodular Companion
 
 Si Kodular avisa que hay que actualizar componentes, acepta y revisa que las 5 pantallas sigan ahi: Screen1, ScreenRegistro, ScreenMenu, ScreenContratos y ScreenUsuarios.
